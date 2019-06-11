@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Karla|Montserrat');
+
+$header-font: 'Karla', sans-serif;
+$body-font: 'Karla', sans-serif;
+
+@mixin reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin horizontal-list {
+  @include reset-list;
+
+  li {
+    display: inline-block;
+  }
+}

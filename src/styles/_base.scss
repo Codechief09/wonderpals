@@ -1,0 +1,8 @@
+@import "vars";
+
+* {
+  font-family: $body-font;
+}
+nav ul {
+  @include horizontal-list;
+}
