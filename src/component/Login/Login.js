@@ -7,66 +7,82 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default function LogInFormDialog() {
+export default class Login extends React.Component {
 
-    const [open, setOpen] = React.useState(false);
-
-    function handleClickOpen() {
-        setOpen(true);
+    state = {
+        isModalOpen: false
     }
 
-    function handleClose() {
-        setOpen(false);
+    handleModal = () => {
+        this.setState({isModalOpen: !this.state.isModalOpen})
     }
 
-    return (
+    // const open = React.useState(false);
+    // const setOpen = React.useState(false);
 
-        <div>
+    // handleClickOpen = () => {
+    //     setOpen(true);
+    // }
+    //
+    // handleClose = () => {
+    //     setOpen(false);
+    // }
 
-            <Button onClick={handleClickOpen}>
-                Login
-            </Button>
+    render() {
 
-            <Dialog open={open} onClose={handleClose} aria-labelledby="login-dialog-title">
 
-                <DialogTitle id="login-dialog-title">Login</DialogTitle>
+        return (
 
-                <DialogContent>
+            <div>
 
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="email-address"
-                        label="Email Address"
-                        type="email"
-                    />
+                <h1>HI!</h1>
 
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="login-password"
-                        label="Password"
-                        type="password"
-                    />
+                <Button onClick={this.handleModal}>
+                    Login
+                </Button>
 
-                    <DialogActions>
+                <Dialog open={this.state.isModalOpen} aria-labelledby="login-dialog-title">
 
-                        <Button onClick={handleClose} color="primary">
-                            Login
-                        </Button>
+                    <DialogTitle id="login-dialog-title">Login</DialogTitle>
 
-                    </DialogActions>
+                    <DialogContent>
 
-                    <DialogContentText>
-                        Don't have an account?
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="email-address"
+                            label="Email Address"
+                            type="email"
+                        />
+
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="login-password"
+                            label="Password"
+                            type="password"
+                        />
+
+                        <DialogActions>
+
+                            <Button color="primary">
+                                Login
+                            </Button>
+
+                        </DialogActions>
+
+                        <DialogContentText>
+                            Don't have an account?
                             Sign up
-                    </DialogContentText>
+                        </DialogContentText>
 
-                </DialogContent>
+                    </DialogContent>
 
-            </Dialog>
+                </Dialog>
 
-        </div>
-    );
+            </div>
+        );
+    }
+
 }
 
