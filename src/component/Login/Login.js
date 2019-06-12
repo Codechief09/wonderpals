@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContectText from '@material-ui/core/DialogContentText';
+import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default function LogInFormDialog() {
@@ -35,6 +35,27 @@ export default function LogInFormDialog() {
 
                     <TextField
                         autoFocus
+                        margin="dense"
+                        id="email-address"
+                        label="Email Address"
+                        type="email"
+                    />
+
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="login-password"
+                        label="Password"
+                        type="password"
+                    />
+
+                    <DialogActions>
+
+                        <Button onClick={handleClose} color="primary">
+                            Login
+                        </Button>
+
+                    </DialogActions>
 
                     <DialogContentText>
                         Don't have an account?
@@ -43,7 +64,9 @@ export default function LogInFormDialog() {
 
                 </DialogContent>
 
+            </Dialog>
+
         </div>
-    )
+    );
 }
 
