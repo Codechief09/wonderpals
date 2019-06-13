@@ -9,6 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default class Login extends React.Component {
 
+    //Modal state functions
     state = {
         isModalOpen: false
     }
@@ -17,19 +18,31 @@ export default class Login extends React.Component {
         this.setState({isModalOpen: !this.state.isModalOpen})
     }
 
-    // const open = React.useState(false);
-    // const setOpen = React.useState(false);
+    handleCloseModal = () => {
+        this.setState({isModalOpen: false})
+    }
 
-    // handleClickOpen = () => {
-    //     setOpen(true);
-    // }
-    //
-    // handleClose = () => {
-    //     setOpen(false);
-    // }
+    // Google Auth function
+    authUrl = () => {
+        let googleURL = "https://accounts.google.com/o/oauth2/v2/auth";
+        let options = {
+            client_id: process.env.REACT_APP_CLIENT_ID,
+            redirect_uri: 'http://localhost:3000/oauth',
+            scope: 'email openid profile',
+            prompt: 'consent',
+            response_type: 'code'
+        };
+        let QueryString = Object.keys(options).map( (key,i) => {
+            return `${key}=` + encodeURIComponent(options[key]);
+        }).join("&");
+        return `${googleURL}?${QueryString}`;
+    };
+
 
     render() {
 
+        // Google Login Function Call
+        const authUrl = this.authUrl();
 
         return (
 
@@ -45,17 +58,19 @@ export default class Login extends React.Component {
 
                     <DialogContent>
 
+                        <DialogActions>
+
+                            <a href={authUrl}>Google Login</a>
+
+                        </DialogActions>
+
                         <TextField
-                            autoFocus
-                            margin="dense"
                             id="email-address"
                             label="Email Address"
                             type="email"
                         />
 
                         <TextField
-                            autoFocus
-                            margin="dense"
                             id="login-password"
                             label="Password"
                             type="password"
@@ -63,7 +78,9 @@ export default class Login extends React.Component {
 
                         <DialogActions>
 
-                            <Button color="primary">
+                            {/*This is the button that we will need to tie to the actual backend login request*/}
+
+                            <Button onClick={this.handleCloseModal}>
                                 Login
                             </Button>
 
@@ -77,6 +94,7 @@ export default class Login extends React.Component {
                     </DialogContent>
 
                 </Dialog>
+
 
             </div>
         );
