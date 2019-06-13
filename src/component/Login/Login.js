@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -13,16 +13,18 @@ export default class Login extends React.Component {
 
     //Modal state functions
     state = {
-        isModalOpen: false
+        isModalOpen: false,
+        email: '',
+        password: ''
     }
 
     handleModal = () => {
         this.setState({isModalOpen: !this.state.isModalOpen})
     }
 
-    handleCloseModal = () => {
-        this.setState({isModalOpen: false})
-    }
+    // handleCloseModal = () => {
+    //     this.setState({isModalOpen: false})
+    // }
 
     // Google Auth function
     authUrl = () => {
@@ -42,22 +44,15 @@ export default class Login extends React.Component {
 
 
     //Form functions
-    constructor (props) {
-        super(props);
-        this.state = {
-            email: '',
-            password: '',
-        }
-    }
-
     handleChange = event => {
-        const {name, value} = event.target;
-        this.setState({[name]: value});
+        this.setState({[event.target.id]: event.target.value});
+        console.log(this.state);
     }
 
     handleSubmit = event => {
         event.preventDefault();
-        this.props.onComplete(this.state);
+        console.log('entries???', this.state);
+        this.props.***SOMETHING IS MISSING HERE***(this.state);
         this.setState({email: '', password: ''});
     }
 
@@ -76,9 +71,9 @@ export default class Login extends React.Component {
                     Login
                 </Button>
 
-                <Dialog open={this.state.isModalOpen} aria-labelledby="login-dialog-title">
+                <Dialog open={this.state.isModalOpen} aria-labelledby="form-dialog-title">
 
-                    <DialogTitle id="login-dialog-title">Login</DialogTitle>
+                    <DialogTitle id="form-dialog-title">Login</DialogTitle>
 
                     <DialogContent>
 
@@ -95,9 +90,9 @@ export default class Login extends React.Component {
                                 <div>
 
                                     <input
-                                        name='email'
-                                        placeholder='Email Address'
                                         type='email'
+                                        id='email'
+                                        placeholder='Email Address'
                                         value={this.state.email}
                                         onChange={this.handleChange}
                                     />
@@ -107,9 +102,9 @@ export default class Login extends React.Component {
                                 <div>
 
                                     <input
-                                        name='password'
-                                        placeholder='Password'
                                         type='password'
+                                        id='password'
+                                        placeholder='Password'
                                         value={this.state.password}
                                         onChange={this.handleChange}
 
@@ -118,6 +113,14 @@ export default class Login extends React.Component {
                                 </div>
 
 
+
+                                <div>
+
+                                    <Button>
+                                        Login
+                                    </Button>
+
+                                </div>
 
                             </form>
 
@@ -128,9 +131,6 @@ export default class Login extends React.Component {
 
                             {/*This is the button that we will need to tie to the actual backend login request*/}
 
-                            <Button type='submit'>
-                                Login
-                            </Button>
 
                         </DialogActions>
 
