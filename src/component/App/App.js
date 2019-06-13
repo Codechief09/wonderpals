@@ -1,11 +1,18 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
+
+import Footer from '../Footer/Footer';
+import Navigation from "../Navigation/Navigation";
 
 function App() {
   return (
-    <div>
-      Hello, world.
-    </div>
+    <main>
+      <div id="header">
+        {/*<h1>Create memories, together.</h1>*/}
+      </div>/>
+      <Navigation/>
+      <Footer/>
+    </main>
   );
 }
 
