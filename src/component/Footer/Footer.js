@@ -1,13 +1,34 @@
 import React from "react";
-import './Footer.css';
+import './Footer.scss';
 
-import { Box } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
+import { Box, Container, Typography, IconButton, Icon } from '@material-ui/core';
+// import { DeleteIcon } from '@material-ui/icons';
 
 export default class Footer extends React.Component {
+  useStyles = () => {
+    return makeStyles(theme => ({
+      button: {
+        margin: theme.spacing(1),
+      },
+      input: {
+        display: 'none',
+      },
+    }))
+  };
+
   render() {
+    const classes = this.useStyles();
     return (
-      <Box id="footer" maxWidth="false">
-        Footer
+      <Box class="footer" maxWidth="false">
+        <div class="footer inside">
+          <Typography variant='h6'>
+            WanderPal
+          </Typography>
+          <IconButton className={classes.button} aria-label="Delete">
+            <Icon>fab fa-github</Icon>
+          </IconButton>
+        </div>
       </Box>
     );
   }

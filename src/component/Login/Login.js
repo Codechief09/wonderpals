@@ -35,8 +35,6 @@ export default class Login extends React.Component {
 
             <div>
 
-                <h1>HI!</h1>
-
                 <Button onClick={this.handleModal}>
                     Login
                 </Button>
