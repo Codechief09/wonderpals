@@ -2,6 +2,7 @@ import React from "react";
 import './Navigation.scss';
 
 import GoogleLogin from '../Login/GoogleLogin';
+import Login from '../Login/Login';
 import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
 
@@ -22,7 +23,7 @@ export default class Navigation extends React.Component {
               <li>Home</li>
               <li>About</li>
               {/*<li><Login/></li>*/}
-              <li><GoogleLogin/></li>
+              <li><Login/></li>
             </ul>
 
               {auth && (

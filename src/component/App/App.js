@@ -13,7 +13,7 @@ function App() {
         <Box>
           <h1>Create memories, together.</h1>
         </Box>
-      </div>/>
+      </div>
       <Navigation/>
       <Footer/>
     </main>
