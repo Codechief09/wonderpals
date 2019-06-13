@@ -1,0 +1,22 @@
+nav {
+    position: absolute;
+    top: 0;
+    background-color: white;
+    width: 100%;
+
+    * {
+        color: #878684 !important;
+    }
+}
+ul {
+    position: absolute;
+    right: 50px;
+}
+#icon {
+    right: 10px;
+    position: absolute;
+}
+.MuiAppBar-colorPrimary {
+    background-color: rgba(255, 255, 255, 0) !important;
+    box-shadow: none !important;
+}
