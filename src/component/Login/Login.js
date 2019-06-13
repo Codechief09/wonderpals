@@ -39,6 +39,27 @@ export default class Login extends React.Component {
     };
 
 
+    //Form functions
+    constructor (props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: '',
+        }
+    }
+
+    handleChange = event => {
+        const {name, value} = event.target;
+        this.setState({[name]: value});
+    }
+
+    handleSubmit = event => {
+        event.preventDefault();
+        this.props.onComplete(this.state);
+        this.setState({email: '', password: ''});
+    }
+
+
     render() {
 
         // Google Login Function Call
@@ -65,17 +86,27 @@ export default class Login extends React.Component {
 
                         </DialogActions>
 
-                        <TextField
-                            id="email-address"
-                            label="Email Address"
-                            type="email"
-                        />
+                        <form onSubmit={this.handleSubmit}>
 
-                        <TextField
-                            id="login-password"
-                            label="Password"
-                            type="password"
-                        />
+                            <TextField
+                                name='email'
+                                placeholder='Email Address'
+                                type='email'
+                                value={this.state.email}
+                                onChange={this.handleChange}
+                            />
+
+                            <TextField
+                                name='password'
+                                placeholder='Password'
+                                type='password'
+                                value={this.state.password}
+                                onChange={this.handleChange}
+
+                            />
+
+                        </form>
+
 
                         <DialogActions>
 
