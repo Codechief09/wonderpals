@@ -7,9 +7,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import Signup from '../Signup/Signup';
 
-export default class Login extends React.Component {
+export default class Signup extends React.Component {
+
 
     //Modal state functions
     state = {
@@ -24,29 +24,13 @@ export default class Login extends React.Component {
         this.setState({isModalOpen: false})
     }
 
-    // Google Auth function
-    authUrl = () => {
-        let googleURL = "https://accounts.google.com/o/oauth2/v2/auth";
-        let options = {
-            client_id: process.env.REACT_APP_CLIENT_ID,
-            redirect_uri: 'http://localhost:3000/oauth',
-            scope: 'email openid profile',
-            prompt: 'consent',
-            response_type: 'code'
-        };
-        let QueryString = Object.keys(options).map( (key,i) => {
-            return `${key}=` + encodeURIComponent(options[key]);
-        }).join("&");
-        return `${googleURL}?${QueryString}`;
-    };
-
-
     //Form functions
     constructor (props) {
         super(props);
         this.state = {
             email: '',
             password: '',
+            name: '',
         }
     }
 
@@ -58,14 +42,13 @@ export default class Login extends React.Component {
     handleSubmit = event => {
         event.preventDefault();
         this.props.onComplete(this.state);
-        this.setState({email: '', password: ''});
+        this.setState({email: '', password: '', name: ''});
     }
 
 
-    render() {
 
-        // Google Login Function Call
-        const authUrl = this.authUrl();
+
+    render() {
 
         return (
 
@@ -73,20 +56,15 @@ export default class Login extends React.Component {
 
 
                 <Button onClick={this.handleModal}>
-                    Login
+                    Sign Up
                 </Button>
 
-                <Dialog open={this.state.isModalOpen} aria-labelledby="login-dialog-title">
+                <Dialog open={this.state.isModalOpen} aria-labelledby="signup-dialog-title">
 
-                    <DialogTitle id="login-dialog-title">Login</DialogTitle>
+                    <DialogTitle id="signup-dialog-title">Sign Up</DialogTitle>
 
                     <DialogContent>
 
-                        <DialogActions>
-
-                            <a href={authUrl}>Google Login</a>
-
-                        </DialogActions>
 
                         <div>
 
@@ -117,7 +95,18 @@ export default class Login extends React.Component {
 
                                 </div>
 
+                                <div>
 
+                                    <input
+                                        name='name'
+                                        placeholder='Name'
+                                        type='text'
+                                        value={this.state.name}
+                                        onChange={this.handleChange}
+
+                                    />
+
+                                </div>
 
                             </form>
 
@@ -129,15 +118,11 @@ export default class Login extends React.Component {
                             {/*This is the button that we will need to tie to the actual backend login request*/}
 
                             <Button type='submit'>
-                                Login
+                                Join
                             </Button>
 
                         </DialogActions>
 
-                        <DialogContentText>
-                            Don't have an account?
-                            <Signup/>
-                        </DialogContentText>
 
                     </DialogContent>
 
@@ -149,4 +134,3 @@ export default class Login extends React.Component {
     }
 
 }
-
