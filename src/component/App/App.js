@@ -1,23 +1,19 @@
 import React from 'react';
-import './App.scss';
+import { BrowserRouter, Route } from "react-router-dom";
+import Landing from '../Landing/Landing';
+import Dashboard from '../Dashboard/Dashboard';
 
-import Footer from '../Footer/Footer';
-import Navigation from "../Navigation/Navigation";
-
-import {Box} from "@material-ui/core";
-
-function App() {
-  return (
-    <main>
-      <div id="header">
-        <Box>
-          <h1>Create memories, together.</h1>
-        </Box>
-      </div>
-      <Navigation/>
-      <Footer/>
-    </main>
-  );
+export class App extends React.Component {
+  render() {
+    return (
+      <main>
+        <BrowserRouter>
+          <Route exact path='/' component={Landing}/>
+          <Route exact path='/dashboard' component={Dashboard}/>
+        </BrowserRouter>
+      </main>
+    )
+  }
 }
 
 export default App;

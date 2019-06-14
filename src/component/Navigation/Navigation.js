@@ -14,7 +14,7 @@ export default class Navigation extends React.Component {
     return (
       <nav>
         <AppBar position="fixed">
-          <Toolbar variant="dense">
+          <Toolbar>
             <Typography variant="h6" color="inherit">
               WanderPal
             </Typography>

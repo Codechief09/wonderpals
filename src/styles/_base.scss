@@ -1,7 +1,8 @@
 @import "vars";
 
 * {
-  font-family: $body-font;
+  font-family: $body-font !important;
+  box-sizing: border-box !important;
 }
 nav ul {
   @include horizontal-list;
