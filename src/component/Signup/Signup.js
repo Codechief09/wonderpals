@@ -31,9 +31,6 @@ export default class Signup extends React.Component {
         this.setState({isModalOpen: !this.state.isModalOpen})
     }
 
-    // handleCloseModal = () => {
-    //     this.setState({isModalOpen: false})
-    // }
 
     //Form functions
     handleChange = event => {
@@ -43,9 +40,10 @@ export default class Signup extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        this.props.***SOMETHING IS MISSING HERE***(this.state);
-        this.setState({email: '', password: '', name: ''});
-        console.log('entries???', this.state);
+        this.setState({isModalOpen: false});
+        // this.props.***SOMETHING IS MISSING HERE***(this.state);
+        // this.setState({email: '', password: '', name: ''});
+        console.log(this.state);
     }
 
 
@@ -57,9 +55,9 @@ export default class Signup extends React.Component {
             <div>
 
 
-                <Button onClick={this.handleModal}>
-                    Sign Up
-                </Button>
+                {/*<Button onClick={this.handleModal}>*/}
+                {/*    Sign Up*/}
+                {/*</Button>*/}
 
                 <Dialog open={this.state.isModalOpen} aria-labelledby="form-dialog-title">
 
@@ -112,7 +110,7 @@ export default class Signup extends React.Component {
 
                                 <div>
 
-                                    <Button onClick={this.handleSubmit}>
+                                    <Button onClick={this.handleSubmit} >
                                         Join
                                     </Button>
 
