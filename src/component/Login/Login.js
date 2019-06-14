@@ -35,6 +35,10 @@ export default class Login extends React.Component {
         this.setState({isModalOpen: !this.state.isModalOpen})
     };
 
+    handleCloseModal = () => {
+        this.setState({isModalOpen: false})
+    };
+
     handleProfile = () => {
         this.setState({hasProfile: !this.state.hasProfile})
     };
@@ -151,7 +155,7 @@ export default class Login extends React.Component {
 
                                 <div>
 
-                                    <Button onClick={this.handleSubmit}>
+                                    <Button onClick={this.handleSubmit} onClick={this.handleCloseModal}>
                                     Login
                                     </Button>
 
@@ -219,7 +223,7 @@ export default class Login extends React.Component {
 
                                 <div>
 
-                                    <Button onClick={this.handleSubmit} >Join</Button>
+                                    <Button onClick={this.handleSubmit} onClick={this.handleCloseModal}>Join</Button>
 
                                 </div>
 
