@@ -13,7 +13,7 @@ export default class Navigation extends React.Component {
     let auth = true;
     return (
       <nav>
-        <AppBar position="fixed">
+        <AppBar position="fixed" className={this.props.class}>
           <Toolbar>
             <Typography variant="h6" color="inherit">
               WanderPal

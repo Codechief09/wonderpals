@@ -9,9 +9,9 @@ export default class Dashboard extends React.Component {
   render() {
     return (
       <div>
-        <Navigation/>
+        <Navigation class='dashboard-nav'/>
         <Container id='dashboard' maxWidth='lg'>
-          <Typography variant='h4'>
+          <Typography variant='h4' mb={2}>
             Welcome back, USERNAME!
           </Typography>
           <Typography variant='h5'>
