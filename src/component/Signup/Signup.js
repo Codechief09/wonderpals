@@ -4,18 +4,27 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
+// import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import Signup from '../Signup/Signup';
 
-export default class Login extends React.Component {
+export default class Signup extends React.Component {
+
 
     //Modal state functions
     state = {
         isModalOpen: false,
-        email: '',
-        password: ''
+    }
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            email: '',
+            password: '',
+            name: ''
+        }
+
     }
 
     handleModal = () => {
@@ -26,23 +35,6 @@ export default class Login extends React.Component {
     //     this.setState({isModalOpen: false})
     // }
 
-    // Google Auth function
-    authUrl = () => {
-        let googleURL = "https://accounts.google.com/o/oauth2/v2/auth";
-        let options = {
-            client_id: process.env.REACT_APP_CLIENT_ID,
-            redirect_uri: 'http://localhost:3000/oauth',
-            scope: 'email openid profile',
-            prompt: 'consent',
-            response_type: 'code'
-        };
-        let QueryString = Object.keys(options).map( (key,i) => {
-            return `${key}=` + encodeURIComponent(options[key]);
-        }).join("&");
-        return `${googleURL}?${QueryString}`;
-    };
-
-
     //Form functions
     handleChange = event => {
         this.setState({[event.target.id]: event.target.value});
@@ -51,40 +43,34 @@ export default class Login extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        console.log('entries???', this.state);
         this.props.***SOMETHING IS MISSING HERE***(this.state);
-        this.setState({email: '', password: ''});
+        this.setState({email: '', password: '', name: ''});
+        console.log('entries???', this.state);
     }
 
 
-    render() {
 
-        // Google Login Function Call
-        const authUrl = this.authUrl();
+    render() {
 
         return (
 
             <div>
 
+
                 <Button onClick={this.handleModal}>
-                    Login
+                    Sign Up
                 </Button>
 
                 <Dialog open={this.state.isModalOpen} aria-labelledby="form-dialog-title">
 
-                    <DialogTitle id="form-dialog-title">Login</DialogTitle>
+                    <DialogTitle id="form-dialog-title">Sign Up</DialogTitle>
 
                     <DialogContent>
 
-                        <DialogActions>
-
-                            <a href={authUrl}>Google Login</a>
-
-                        </DialogActions>
 
                         <div>
 
-                            <form onSubmit={this.handleSubmit}>
+                            <form>
 
                                 <div>
 
@@ -111,17 +97,30 @@ export default class Login extends React.Component {
 
                                 </div>
 
+                                <div>
 
+                                    <input
+                                        type='text'
+                                        id='name'
+                                        placeholder='Name'
+                                        value={this.state.name}
+                                        onChange={this.handleChange}
+
+                                    />
+
+                                </div>
 
                                 <div>
 
-                                    <Button>
-                                        Login
+                                    <Button onClick={this.handleSubmit}>
+                                        Join
                                     </Button>
 
                                 </div>
 
+
                             </form>
+
 
                         </div>
 
@@ -133,10 +132,6 @@ export default class Login extends React.Component {
 
                         </DialogActions>
 
-                        <DialogContentText>
-                            Don't have an account?
-                            <Signup/>
-                        </DialogContentText>
 
                     </DialogContent>
 
@@ -148,4 +143,3 @@ export default class Login extends React.Component {
     }
 
 }
-
