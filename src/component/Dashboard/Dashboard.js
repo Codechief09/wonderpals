@@ -1,11 +1,12 @@
 import React from 'react';
 import './Dashboard.scss';
+import {connect} from 'react-redux';
 
 import Navigation from '../Navigation/Navigation';
 import ItineraryCarousel from '../ItineraryCarousel/ItineraryCarousel';
 import { Typography, Container } from '@material-ui/core';
 
-export default class Dashboard extends React.Component {
+class Dashboard extends React.Component {
   render() {
     return (
       <div>
@@ -29,3 +30,15 @@ export default class Dashboard extends React.Component {
     )
   }
 }
+const mapStateToProps = state => {
+  return{
+
+  }
+};
+const mapDispatchToProps = dispatch => {
+
+};
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
