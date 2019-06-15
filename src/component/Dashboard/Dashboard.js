@@ -4,6 +4,9 @@ import './Dashboard.scss';
 import Navigation from '../Navigation/Navigation';
 import ItineraryCarousel from '../ItineraryCarousel/ItineraryCarousel';
 import { Typography, Container } from '@material-ui/core';
+import ItineraryForm from '../ItineraryForm/ItineraryForm';
+import Login from "../Login/Login";
+
 
 export default class Dashboard extends React.Component {
   render() {
@@ -11,6 +14,7 @@ export default class Dashboard extends React.Component {
       <div>
         <Navigation class='dashboard-nav'/>
         <Container id='dashboard' maxWidth='lg'>
+            <div><ItineraryForm/></div>
           <Typography variant='h4' mb={2}>
             Welcome back, USERNAME!
           </Typography>
