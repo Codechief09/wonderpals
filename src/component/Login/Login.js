@@ -203,7 +203,6 @@ export class Login extends React.Component {
 				</div>
 			);
 		}
-}
 
 
 // const mapStateToProps = (state) => {
