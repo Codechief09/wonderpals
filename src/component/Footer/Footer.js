@@ -20,8 +20,8 @@ export default class Footer extends React.Component {
   render() {
     const classes = this.useStyles();
     return (
-      <Box class="footer" maxWidth="false">
-        <div class="footer inside">
+      <Box className="footer" maxWidth="false">
+        <div className="footer inside">
           <Typography variant='h6'>
             WanderPal
           </Typography>

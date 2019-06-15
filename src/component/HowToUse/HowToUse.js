@@ -23,7 +23,7 @@ export default class HowToUse extends React.Component {
         <Grid container justify='center' spacing={2}>
           {
             this.state.cardData.map((data, index) => (
-              <Grid item xs>
+              <Grid item xs key={index}>
                 <Card>
                   <CardContent>
                     <Typography variant='h6'>
