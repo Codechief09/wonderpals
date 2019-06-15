@@ -1,15 +1,15 @@
 import React from "react";
 import './Navigation.scss';
 
-// import GoogleLogin from '../Login/GoogleLogin';
-import Login from '../Login/Login';
+// import Login from '../Login/Login';
+import AuthForm from '../AuthForm/AuthForm';
 import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
 
 export default class Navigation extends React.Component {
 
   render() {
-
+    let type = 'login';
     let auth = true;
     return (
       <nav>
@@ -23,7 +23,7 @@ export default class Navigation extends React.Component {
               <li>Home</li>
               <li>About</li>
               {/*<li><Login/></li>*/}
-              <li><Login/></li>
+              <li><AuthForm type={type}/></li>
             </ul>
 
               {auth && (
