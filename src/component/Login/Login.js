@@ -11,50 +11,57 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 // import Signup from '../Signup/Signup';
 
-export class Login extends React.Component {
+import Signup from '../Signup/Signup';
 
-  //Modal state functions
-  state = {
-    isModalOpen: false,
-    email: '',
-    password: ''
-  }
+export default class Login extends React.Component {
 
-  handleModal = () => {
-    this.setState({isModalOpen: !this.state.isModalOpen})
-  }
-
-  // handleCloseModal = () => {
-  //     this.setState({isModalOpen: false})
-  // }
-
-  // Google Auth function
-  authUrl = () => {
-    let googleURL = "https://accounts.google.com/o/oauth2/v2/auth";
-    let options = {
-      client_id: process.env.REACT_APP_CLIENT_ID,
-      redirect_uri: 'http://localhost:3000/dashboard',
-      scope: 'email openid profile',
-      prompt: 'consent',
-      response_type: 'code'
+    //Modal state functions
+    state = {
+        isModalOpen: false,
+        email: '',
+        password: '',
+        name: '',
+        hasProfile: true
     };
-    let QueryString = Object.keys(options).map( (key,i) => {
-      return `${key}=` + encodeURIComponent(options[key]);
-    }).join("&");
-    return `${googleURL}?${QueryString}`;
-  };
 
+    constructor(props) {
+        super(props);
 
-  //Form functions
-  handleChange = event => {
-    this.setState({[event.target.id]: event.target.value});
-  };
+        this.state = {
+            email: '',
+            password: '',
+            name: ''
+        }
 
-  handleSubmit = event => {
-    event.preventDefault();
-    console.log('entries???', this.state);
-    this.props.mappedLogin(this.state);
-    this.setState({email: '', password: ''});
+    }
+
+    handleModal = () => {
+        this.setState({isModalOpen: !this.state.isModalOpen})
+    };
+
+    handleCloseModal = () => {
+        this.setState({isModalOpen: false})
+    };
+
+    handleProfile = () => {
+        this.setState({hasProfile: !this.state.hasProfile})
+    };
+
+    // Google Auth function
+    authUrl = () => {
+        let googleURL = "https://accounts.google.com/o/oauth2/v2/auth";
+        let options = {
+          client_id: process.env.REACT_APP_CLIENT_ID,
+          redirect_uri: 'http://localhost:3000/dashboard',
+          scope: 'email openid profile',
+          prompt: 'consent',
+          response_type: 'code'
+        };
+        let QueryString = Object.keys(options).map( (key,i) => {
+            return `${key}=` + encodeURIComponent(options[key]);
+        }).join("&");
+        return `${googleURL}?${QueryString}`;
+    };
   };
 
 
@@ -62,6 +69,46 @@ export class Login extends React.Component {
 
     // Google Login Function Call
     const authUrl = this.authUrl();
+    //Form functions
+    handleChange = event => {
+        this.setState({[event.target.id]: event.target.value});
+        console.log(this.state);
+    };
+
+    handleSubmit = event => {
+        event.preventDefault();
+        this.setState({isModalOpen: false});
+        console.log('entries???', this.state);
+        this.props.mappedLogin(this.state);
+        this.setState({email: '', password: ''});
+    };
+
+    signUpView () {
+
+        if(this.state.hasProfile === true){
+            //thought I could just put stuff in here to show??
+
+        }
+
+        if(this.state.hasProfile === false) {
+            return (
+                //this does show up, only once I have clicked the Signup button
+                <p>
+                    This can work!
+                </p>
+            )
+        }
+
+    }
+
+
+
+    render() {
+
+        // Google Login Function Call
+        const authUrl = this.authUrl();
+        const header = this.state.hasProfile  ? 'Sign Up' : 'Login';
+
 
     return (
 
@@ -73,9 +120,12 @@ export class Login extends React.Component {
 
         <Dialog open={this.state.isModalOpen} aria-labelledby="form-dialog-title">
 
-          <DialogTitle id="form-dialog-title">Login</DialogTitle>
+                    <DialogTitle id="form-dialog-title">{ header }</DialogTitle>
 
-          <DialogContent>
+
+
+                    <DialogContent id='Login-form'>
+
 
             <DialogActions>
 
@@ -101,43 +151,97 @@ export class Login extends React.Component {
 
                 <div>
 
-                  <input
-                    type='password'
-                    id='password'
-                    placeholder='Password'
-                    value={this.state.password}
-                    onChange={this.handleChange}
+                                    <input
+                                    type='password'
+                                    id='password'
+                                    placeholder='Password'
+                                    value={this.state.password}
+                                    onChange={this.handleChange}
+
+                                    />
+
+                                </div>
+
+                                <div>
+
+                                    <Button onClick={this.handleSubmit} onClick={this.handleCloseModal}>
+                                    Login
+                                    </Button>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+
+                        <DialogContentText>
+                            Don't have an account?
+                            <Button onClick={this.handleProfile}>Sign Up</Button>
+                            {this.signUpView()}
+                        </DialogContentText>
+
+
+                    </DialogContent>
+
+
+                    <DialogContent id='Signup-Form'>
+
+
+                        <div>
+
+                            <form>
+
+                                <div>
+
+                                    <input
+                                        type='email'
+                                        id='email'
+                                        placeholder='Email Address'
+                                        value={this.state.email}
+                                        onChange={this.handleChange}
+                                    />
+
+                                </div>
+
+                                <div>
+
+                                    <input
+                                        type='password'
+                                        id='password'
+                                        placeholder='Password'
+                                        value={this.state.password}
+                                        onChange={this.handleChange}
 
                   />
 
                 </div>
 
+                                <div>
 
+                                    <input
+                                        type='text'
+                                        id='name'
+                                        placeholder='Name'
+                                        value={this.state.name}
+                                        onChange={this.handleChange}
 
-                <div>
-
-                  <Button type='submit'>
-                    Login
-                  </Button>
+                                    />
 
                 </div>
 
-              </form>
+                                <div>
 
-            </div>
+                                    <Button onClick={this.handleSubmit} onClick={this.handleCloseModal}>Join</Button>
 
-
-            <DialogActions>
-
-              {/*This is the button that we will need to tie to the actual backend login request*/}
+                                </div>
 
 
-            </DialogActions>
+                            </form>
 
-            <DialogContentText>
-              Don't have an account?
-              {/*<Signup/>*/}
-            </DialogContentText>
+
+                        </div>
+
 
           </DialogContent>
 
