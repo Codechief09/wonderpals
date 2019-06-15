@@ -2,35 +2,24 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
+// import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
+// import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
+
 
 export default class ItineraryForm extends React.Component {
-
-    state = {
-        isModalOpen: false,
-        eventName: '',
-        location: '',
-        date: '',
-        details: ''
-
-    };
 
     constructor(props) {
         super(props);
 
         this.state = {
-            eventName: '',
-            location: '',
-            date: '',
-            details: ''
+            isModalOpen: false,
+            itineraryName: '',
+            itineraryLocation: '',
+            itineraryDateStart: '',
+            itineraryDateEnd: '',
+            itineraryDetails: ''
         }
 
     }
@@ -50,9 +39,8 @@ export default class ItineraryForm extends React.Component {
     };
 
     handleSubmit = event => {
+        console.log(this.state);
         event.preventDefault();
-        this.setState({isModalOpen: false});
-        console.log('entries???', this.state);
     };
 
 
@@ -75,33 +63,61 @@ export default class ItineraryForm extends React.Component {
 
                         <form id="itinerary-form">
 
+                            <div>
+
+                                <TextField
+                                    required
+                                    type='text'
+                                    id='itineraryName'
+                                    value={this.state.itineraryName}
+                                    title='Itinerary Name'
+                                    placeholder='Itinerary Name'
+                                    onChange={this.handleChange}
+                                />
+
+                                <TextField
+                                    required
+                                    type='text'
+                                    id='itineraryLocation'
+                                    value={this.state.itineraryLocation}
+                                    title='Location'
+                                    placeholder='Location'
+                                    onChange={this.handleChange}
+                                />
+
+                            </div>
+
+                            <div>
+
+                                <TextField
+                                    required
+                                    type='date'
+                                    label='Start Date'
+                                    id='itineraryDateStart'
+                                    value={this.state.itineraryDateStart}
+                                    onChange={this.handleChange}
+                                />
+
+                            </div>
+
+                            <div>
+
+                                <TextField
+                                    required
+                                    type='date'
+                                    label='End Date'
+                                    id='itineraryDateEnd'
+                                    value={this.state.itineraryDateEnd}
+                                    onChange={this.handleChange}
+                                />
+
+                            </div>
+
                             <TextField
-                                required
                                 type='text'
-                                id='event-name'
-                                placeholder='Event Name'
-                                onChange={this.handleChange}
-
-                            />
-
-                            <TextField
-                                required
-                                type='text'
-                                id='event-location'
-                                placeholder='Location'
-                                onChange={this.handleChange}
-                            />
-
-                            <TextField
-                                required
-                                type='date'
-                                id='event-date'
-                                onChange={this.handleChange}
-                            />
-
-                            <TextField
-                                id='event-details'
-                                type='text'
+                                id='itineraryDetails'
+                                value={this.state.itineraryDetails}
+                                title='Details'
                                 placeholder='Details'
                                 fullWidth
                                 onChange={this.handleChange}
