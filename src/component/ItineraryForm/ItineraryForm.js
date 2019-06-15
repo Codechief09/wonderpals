@@ -107,6 +107,10 @@ export default class ItineraryForm extends React.Component {
                                 onChange={this.handleChange}
                             />
 
+                            <div>
+                                <Button onClick={this.handleSubmit} onClick={this.handleCloseModal}>CREATE</Button>
+                            </div>
+
                         </form>
 
                     </DialogContent>
