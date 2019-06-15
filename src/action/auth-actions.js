@@ -10,7 +10,7 @@ export const remove = () => ({
 });
 
 
-const API_URL = 'http://localhost:5000/';
+const API_URL = process.env.REACT_APP_API_KEY;
 const SIGNUP_ROUTE = 'signup';
 const LOGIN_ROUTE = 'login';
 
@@ -24,12 +24,13 @@ export const signupRequest = user => store => {
     .catch(console.log);
 };
 
-export const loginRequest = (username, password) => store => {
+export const loginRequest = formData => store => {
   return superagent.get(`${API_URL}${LOGIN_ROUTE}`)
-    .auth(username, password)
-    .withCredentials()
+    .auth(formData.email, formData.password)
+    // .withCredentials()
     .then(response => {
-      return store.dispatch(set(response.text));
+      console.log(response.body)
+      return store.dispatch(set(response.body));
     })
     .catch(console.log);
 };
