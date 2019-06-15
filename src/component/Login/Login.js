@@ -15,16 +15,33 @@ export default class Login extends React.Component {
     state = {
         isModalOpen: false,
         email: '',
-        password: ''
+        password: '',
+        name: '',
+        hasProfile: true
+    };
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            email: '',
+            password: '',
+            name: ''
+        }
+
     }
 
     handleModal = () => {
         this.setState({isModalOpen: !this.state.isModalOpen})
-    }
+    };
 
-    // handleCloseModal = () => {
-    //     this.setState({isModalOpen: false})
-    // }
+    handleCloseModal = () => {
+        this.setState({isModalOpen: false})
+    };
+
+    handleProfile = () => {
+        this.setState({hasProfile: !this.state.hasProfile})
+    };
 
     // Google Auth function
     authUrl = () => {
@@ -47,20 +64,42 @@ export default class Login extends React.Component {
     handleChange = event => {
         this.setState({[event.target.id]: event.target.value});
         console.log(this.state);
-    }
+    };
 
     handleSubmit = event => {
         event.preventDefault();
+        this.setState({isModalOpen: false});
         console.log('entries???', this.state);
-        this.props.***SOMETHING IS MISSING HERE***(this.state);
-        this.setState({email: '', password: ''});
+        // this.props.***SOMETHING IS MISSING HERE***(this.state);
+        // this.setState({email: '', password: ''});
+    };
+
+    signUpView () {
+
+        if(this.state.hasProfile === true){
+            //thought I could just put stuff in here to show??
+
+        }
+
+        if(this.state.hasProfile === false) {
+            return (
+                //this does show up, only once I have clicked the Signup button
+                <p>
+                    This can work!
+                </p>
+            )
+        }
+
     }
+
 
 
     render() {
 
         // Google Login Function Call
         const authUrl = this.authUrl();
+        const header = this.state.hasProfile  ? 'Sign Up' : 'Login';
+
 
         return (
 
@@ -72,9 +111,12 @@ export default class Login extends React.Component {
 
                 <Dialog open={this.state.isModalOpen} aria-labelledby="form-dialog-title">
 
-                    <DialogTitle id="form-dialog-title">Login</DialogTitle>
+                    <DialogTitle id="form-dialog-title">{ header }</DialogTitle>
 
-                    <DialogContent>
+
+
+                    <DialogContent id='Login-form'>
+
 
                         <DialogActions>
 
@@ -101,6 +143,61 @@ export default class Login extends React.Component {
                                 <div>
 
                                     <input
+                                    type='password'
+                                    id='password'
+                                    placeholder='Password'
+                                    value={this.state.password}
+                                    onChange={this.handleChange}
+
+                                    />
+
+                                </div>
+
+                                <div>
+
+                                    <Button onClick={this.handleSubmit} onClick={this.handleCloseModal}>
+                                    Login
+                                    </Button>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+
+                        <DialogContentText>
+                            Don't have an account?
+                            <Button onClick={this.handleProfile}>Sign Up</Button>
+                            {this.signUpView()}
+                        </DialogContentText>
+
+
+                    </DialogContent>
+
+
+                    <DialogContent id='Signup-Form'>
+
+
+                        <div>
+
+                            <form>
+
+                                <div>
+
+                                    <input
+                                        type='email'
+                                        id='email'
+                                        placeholder='Email Address'
+                                        value={this.state.email}
+                                        onChange={this.handleChange}
+                                    />
+
+                                </div>
+
+                                <div>
+
+                                    <input
                                         type='password'
                                         id='password'
                                         placeholder='Password'
@@ -111,41 +208,40 @@ export default class Login extends React.Component {
 
                                 </div>
 
-
-
                                 <div>
 
-                                    <Button>
-                                        Login
-                                    </Button>
+                                    <input
+                                        type='text'
+                                        id='name'
+                                        placeholder='Name'
+                                        value={this.state.name}
+                                        onChange={this.handleChange}
+
+                                    />
 
                                 </div>
 
+                                <div>
+
+                                    <Button onClick={this.handleSubmit} onClick={this.handleCloseModal}>Join</Button>
+
+                                </div>
+
+
                             </form>
+
 
                         </div>
 
 
-                        <DialogActions>
-
-                            {/*This is the button that we will need to tie to the actual backend login request*/}
-
-
-                        </DialogActions>
-
-                        <DialogContentText>
-                            Don't have an account?
-                            <Signup/>
-                        </DialogContentText>
-
                     </DialogContent>
+
 
                 </Dialog>
 
 
             </div>
-        );
+        )
     }
 
 }
-
