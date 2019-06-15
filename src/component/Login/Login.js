@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import Signup from '../Signup/Signup';
+// import Signup from '../Signup/Signup';
 
 export default class Login extends React.Component {
 
