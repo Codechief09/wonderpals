@@ -5,6 +5,9 @@ import {connect} from 'react-redux';
 import Navigation from '../Navigation/Navigation';
 import ItineraryCarousel from '../ItineraryCarousel/ItineraryCarousel';
 import { Typography, Container } from '@material-ui/core';
+import ItineraryForm from '../ItineraryForm/ItineraryForm';
+import Login from "../Login/Login";
+
 
 class Dashboard extends React.Component {
   render() {
@@ -12,6 +15,7 @@ class Dashboard extends React.Component {
       <div>
         <Navigation class='dashboard-nav'/>
         <Container id='dashboard' maxWidth='lg'>
+            <div><ItineraryForm/></div>
           <Typography variant='h4' mb={2}>
             Welcome back, USERNAME!
           </Typography>
