@@ -2,7 +2,7 @@ import React from 'react';
 import Day from '../Day/Day';
 import { connect } from 'react-redux';
 import Navigation from '../Navigation/Navigation';
-import
+import {object} from "prop-types";
 
 
 class Itinerary extends React.Component{
@@ -38,8 +38,8 @@ class Itinerary extends React.Component{
 }
 const mapStateToProps = state => {
     return{
-        days:
-        itineraryBackgroundImage:
+        days: ,
+        itineraryBackgroundImage: ,
     }
 };
 const mapDispatchToProps = dispatch => {
