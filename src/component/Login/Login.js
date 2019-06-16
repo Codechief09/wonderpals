@@ -98,111 +98,111 @@ export class Login extends React.Component {
 		const authUrl = this.authUrl();
 		const header = this.state.hasProfile ? 'Sign Up' : 'Login';
 
-			return (
+		return (
 
-				<div>
-					<Button onClick={this.handleModal}>
-						Login
-					</Button>
+			<div>
+				<Button onClick={this.handleModal}>
+					Login
+				</Button>
 
-					<Dialog open={this.state.isModalOpen} aria-labelledby="form-dialog-title">
+				<Dialog open={this.state.isModalOpen} aria-labelledby="form-dialog-title">
 
-						<DialogTitle id="form-dialog-title">{header}</DialogTitle>
+					<DialogTitle id="form-dialog-title">{header}</DialogTitle>
 
-						<DialogContent id='Login-form'>
+					<DialogContent id='Login-form'>
 
-							<DialogActions>
-								<a href={authUrl}>Google Login</a>
-							</DialogActions>
+						<DialogActions>
+							<a href={authUrl}>Google Login</a>
+						</DialogActions>
 
-							<div>
-								<form onSubmit={this.handleSubmit}>
-									<div>
+						<div>
+							<form onSubmit={this.handleSubmit}>
+								<div>
 
-										<input
-											type='email'
-											id='email'
-											placeholder='Email Address'
-											value={this.state.email}
-											onChange={this.handleChange}
-										/>
+									<input
+										type='email'
+										id='email'
+										placeholder='Email Address'
+										value={this.state.email}
+										onChange={this.handleChange}
+									/>
 
-									</div>
+								</div>
 
-									<div>
-										<input
-											type='password'
-											id='password'
-											placeholder='Password'
-											value={this.state.password}
-											onChange={this.handleChange}
-										/>
-									</div>
+								<div>
+									<input
+										type='password'
+										id='password'
+										placeholder='Password'
+										value={this.state.password}
+										onChange={this.handleChange}
+									/>
+								</div>
 
-									<div>
-										<Button onClick={this.handleSubmit}>
-											Login
-										</Button>
-									</div>
+								<div>
+									<Button onClick={this.handleSubmit}>
+										Login
+									</Button>
+								</div>
 
-								</form>
+							</form>
 
-							</div>
+						</div>
 
 
-							<DialogContentText>
-								Don't have an account?
-								<Button onClick={this.handleProfile}>Sign Up</Button>
-								{this.signUpView()}
-							</DialogContentText>
+						<DialogContentText>
+							Don't have an account?
+							<Button onClick={this.handleProfile}>Sign Up</Button>
+							{this.signUpView()}
+						</DialogContentText>
 
-						</DialogContent>
+					</DialogContent>
 
-						<DialogContent id='Signup-Form'>
-							<div>
-								<form>
-									<div>
-										<input
-											type='email'
-											id='email'
-											placeholder='Email Address'
-											value={this.state.email}
-											onChange={this.handleChange}
-										/>
-									</div>
+					<DialogContent id='Signup-Form'>
+						<div>
+							<form>
+								<div>
+									<input
+										type='email'
+										id='email'
+										placeholder='Email Address'
+										value={this.state.email}
+										onChange={this.handleChange}
+									/>
+								</div>
 
-									<div>
-										<input
-											type='password'
-											id='password'
-											placeholder='Password'
-											value={this.state.password}
-											onChange={this.handleChange}
+								<div>
+									<input
+										type='password'
+										id='password'
+										placeholder='Password'
+										value={this.state.password}
+										onChange={this.handleChange}
 
-										/>
-									</div>
+									/>
+								</div>
 
-									<div>
-										<input
-											type='text'
-											id='name'
-											placeholder='Name'
-											value={this.state.name}
-											onChange={this.handleChange}
-										/>
-									</div>
+								<div>
+									<input
+										type='text'
+										id='name'
+										placeholder='Name'
+										value={this.state.name}
+										onChange={this.handleChange}
+									/>
+								</div>
 
-									<div>
-										<Button onClick={this.handleSubmit}>Join</Button>
-									</div>
-								</form>
+								<div>
+									<Button onClick={this.handleSubmit}>Join</Button>
+								</div>
+							</form>
 
-							</div>
-						</DialogContent>
-					</Dialog>
-				</div>
-			);
-		}
+						</div>
+					</DialogContent>
+				</Dialog>
+			</div>
+		);
+	}
 
 
 // const mapStateToProps = (state) => {
@@ -210,6 +210,8 @@ export class Login extends React.Component {
 //     words: state.words,
 //   }
 // };
+
+}
 
 const mapDispatchToProps = dispatch => ({
 	mappedLogin: (formData) => dispatch(authActions.loginRequest(formData))
