@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route } from "react-router-dom";
 import Landing from '../Landing/Landing';
 import Dashboard from '../Dashboard/Dashboard';
+import Itinerary from '../Itinerary/Itinerary';
 
 export class App extends React.Component {
   render() {
@@ -10,6 +11,7 @@ export class App extends React.Component {
         <BrowserRouter>
           <Route exact path='/' component={Landing}/>
           <Route exact path='/dashboard' component={Dashboard}/>
+          <Route exact path='/itin' component={Itinerary}/>
         </BrowserRouter>
       </main>
     )

@@ -1,40 +1,50 @@
 import React from 'react';
-//MAKE ME! import day from 'day'; //stil needs to be made!!
+import Day from '../Day/Day';
+import { connect } from 'react-redux';
+import Navigation from '../Navigation/Navigation';
+import
+
+
 class Itinerary extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            name: 'name',
-            days: [],
-        };
-    };
-
-    handleChange =(event) => {
-        this.setState({
-            [event.target.name]: event.target.value,
-        });
+            itineraryHeaderStyle: {
+                backgroundImage://img link here
+            }
+        }
     };
 
     render(){
         return(
             <div>
-                <div>
-                    <input
-                        type='text'
-                        name='name'
-                        onChange={this.handleChange}
-                        placeholder='Expense'
-                    />
-                    <button>Add Day</button>
+                <Navigation />
+                <div id="itineraryHeader" style={this.state.itineraryHeaderStyle}>
+                    <h1>{this.props.itineraryName}</h1>
                 </div>
-                {
-                    this.props.days.map(day => {
-                        <day
-
-                        />
-                    })
-                }
+                <div>
+                    {
+                        this.props.days.map(day => {
+                            <Day
+                                date={day.date}
+                                hours={day.hours}
+                            />
+                        })
+                    }
+                </div>
             </div>
         );
     }
 }
+const mapStateToProps = state => {
+    return{
+        days:
+        itineraryBackgroundImage:
+    }
+};
+const mapDispatchToProps = dispatch => {
+    return{
+
+    }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Itinerary);
