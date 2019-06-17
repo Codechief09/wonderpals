@@ -1,7 +1,7 @@
 import React from "react";
 import './Navigation.scss';
 
-// import Login from '../Login/Login';
+
 import AuthForm from '../AuthForm/AuthForm';
 import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
@@ -22,7 +22,6 @@ export default class Navigation extends React.Component {
             <ul>
               <li>Home</li>
               <li>About</li>
-              {/*<li><Login/></li>*/}
               <li><AuthForm type={type}/></li>
             </ul>
 

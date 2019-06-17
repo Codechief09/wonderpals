@@ -6,7 +6,6 @@ import About from '../About/About';
 import HowToUse from '../HowToUse/HowToUse';
 import Footer from '../Footer/Footer';
 
-// import GoogleLogin from '../Login/GoogleLogin';
 
 import { Box } from '@material-ui/core';
 
@@ -27,7 +26,6 @@ export default class Landing extends React.Component {
               <h1>{ this.state.message }</h1>
             </div>
           </Box>
-          {/*<GoogleLogin/>*/}
           <About/>
           <HowToUse/>
         </div>

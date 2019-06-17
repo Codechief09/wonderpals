@@ -76,22 +76,6 @@ export class Login extends React.Component {
 		this.handleCloseModal();
 	};
 
-	signUpView() {
-
-		if (this.state.hasProfile === true) {
-			//thought I could just put stuff in here to show??
-
-		}
-
-		if (this.state.hasProfile === false) {
-			return (
-				//this does show up, only once I have clicked the Signup button
-				<p>
-					This can work!
-				</p>
-			)
-		}
-	};
 
 
 	render() {
@@ -153,7 +137,6 @@ export class Login extends React.Component {
 						<DialogContentText>
 							Don't have an account?
 							<Button onClick={this.handleProfile}>Sign Up</Button>
-							{this.signUpView()}
 						</DialogContentText>
 
 					</DialogContent>
