@@ -10,8 +10,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import {TextField} from '@material-ui/core';
 
-// import Signup from '../Signup/Signup';
-
 const defaultState = {name: '', email: '', password: ''};
 
 export class AuthForm extends React.Component {
