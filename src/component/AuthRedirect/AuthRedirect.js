@@ -11,19 +11,19 @@ class AuthRedirect extends React.Component{
 		console.log(pathname)
 		let destinationRoute = null; // Vinicio - the final route I want to send the user to
 
-		if (pathname === '/login' || pathname === '/signup' || pathname === '/') {
-			if(token) {
-				// Vinicio - the user is already logged in
-				destinationRoute = '/dashboard';
-			}
-		} else if(!token) {
-			destinationRoute = '/';
-		}
-		console.log({destinationRoute});
-		// Vinicio - in any other case I just want the destination route to be null
+		// if (pathname === '/login' || pathname === '/signup' || pathname === '/') {
+		// 	if(token) {
+		// 		// Vinicio - the user is already logged in
+		// 		destinationRoute = '/dashboard';
+		// 	}
+		// } else if(!token) {
+		// 	destinationRoute = '/';
+		// }
+		// console.log({destinationRoute});
+		// // Vinicio - in any other case I just want the destination route to be null
 		return(
 			<div>
-				{destinationRoute ? <Redirect to={destinationRoute}/> : undefined}
+				{/*{destinationRoute ? <Redirect to={destinationRoute}/> : undefined}*/}
 			</div>
 		);
 	}
