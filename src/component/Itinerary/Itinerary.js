@@ -10,7 +10,7 @@ class Itinerary extends React.Component{
         super(props);
         this.state = {
             itineraryHeaderStyle: {
-                backgroundImage://img link here
+                // backgroundImage://img link here
             }
         }
     };
@@ -25,10 +25,10 @@ class Itinerary extends React.Component{
                 <div>
                     {
                         this.props.days.map(day => {
-                            <Day
-                                date={day.date}
-                                hours={day.hours}
-                            />
+                            {/*<Day*/}
+                                {/*date={day.date}*/}
+                                {/*hours={day.hours}*/}
+                            {/*/>*/}
                         })
                     }
                 </div>

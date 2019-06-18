@@ -11,8 +11,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 // import Signup from '../Signup/Signup';
 
-const defaultState = {name: '', email: '', password: ''};
-
 export class Login extends React.Component {
 	//Modal state functions
 	state = {

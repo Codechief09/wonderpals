@@ -10,8 +10,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import {TextField} from '@material-ui/core';
 
-// import Signup from '../Signup/Signup';
-
 const defaultState = {name: '', email: '', password: ''};
 
 export class AuthForm extends React.Component {
@@ -51,9 +49,20 @@ export class AuthForm extends React.Component {
 	handleSubmit = event => {
 		event.preventDefault();
 		this.setState({isModalOpen: false});
-		this.props.mappedLogin(this.state);
+
+		if (this.state.type === 'login') {
+			this.props.mappedLogin(this.state);
+		} else {
+			this.props.mappedSignup(this.state);
+		}
+
 		this.setState(defaultState);
 		this.handleModal(false);
+	};
+
+	handleLogout = event => {
+		event.preventDefault();
+		this.props.mappedLogout();
 	};
 
 	handleModal = (trueOrFalse) => {
@@ -129,9 +138,17 @@ export class AuthForm extends React.Component {
 		return (
 
 			<div>
-				<Button onClick={() => this.handleModal(true)}>
-					Login
-				</Button>
+				{
+					this.props.token ?
+						<Button onClick={this.handleLogout}>
+							Logout
+						</Button>
+						:
+						<Button onClick={() => this.handleModal(true)}>
+							Login
+						</Button>
+				}
+
 
 				<Dialog
 					open={this.state.isModalOpen}
@@ -196,14 +213,14 @@ export class AuthForm extends React.Component {
 	}
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     words: state.words,
-//   }
-// };
-
-const mapDispatchToProps = dispatch => ({
-	mappedLogin: (formData) => dispatch(authActions.loginRequest(formData))
+const mapStateToProps = (state) => ({
+  token: state.token
 });
 
-export default connect(null, mapDispatchToProps)(AuthForm);
+const mapDispatchToProps = dispatch => ({
+	mappedLogin: (formData) => dispatch(authActions.loginRequest(formData)),
+	mappedSignup: (user) => dispatch(authActions.signupRequest(user)),
+	mappedLogout: () => dispatch(authActions.remove())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthForm);
