@@ -1,5 +1,3 @@
-const initialState = null;
-
 export default (state = {}, {type, payload}) => {
   const token = payload;
   switch(type) {
@@ -8,6 +6,6 @@ export default (state = {}, {type, payload}) => {
     case 'TOKEN_REMOVE':
       return null;
     default:
-      return state;
+      return null;
   }
 };

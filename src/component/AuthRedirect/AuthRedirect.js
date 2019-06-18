@@ -7,23 +7,20 @@ class AuthRedirect extends React.Component{
 	render() {
 
 		const {location, token} = this.props;
-		const {pathname} = location; // Vinicio - pathname is basically our front-end route
-		console.log(pathname)
-		let destinationRoute = null; // Vinicio - the final route I want to send the user to
+		const {pathname} = location;
+		let destinationRoute = null;
 
-		// if (pathname === '/login' || pathname === '/signup' || pathname === '/') {
-		// 	if(token) {
-		// 		// Vinicio - the user is already logged in
-		// 		destinationRoute = '/dashboard';
-		// 	}
-		// } else if(!token) {
-		// 	destinationRoute = '/';
-		// }
-		// console.log({destinationRoute});
-		// // Vinicio - in any other case I just want the destination route to be null
+		if (pathname === '/login' || pathname === '/signup' || pathname === '/' || pathname === '/dashboard') {
+			if(token) {
+				destinationRoute = '/dashboard';
+			}
+		} else if(!token) {
+			destinationRoute = '/';
+		}
+
 		return(
 			<div>
-				{/*{destinationRoute ? <Redirect to={destinationRoute}/> : undefined}*/}
+				{destinationRoute ? <Redirect to={destinationRoute}/> : undefined}
 			</div>
 		);
 	}
@@ -36,4 +33,4 @@ const mapStateToProps = state => ({
 	token: state.token,
 });
 
-export default connect(mapStateToProps)(AuthRedirect);
+export default connect(mapStateToProps, null)(AuthRedirect);
