@@ -6,8 +6,6 @@ import Navigation from '../Navigation/Navigation';
 import ItineraryCarousel from '../ItineraryCarousel/ItineraryCarousel';
 import { Typography, Container } from '@material-ui/core';
 import ItineraryForm from '../ItineraryForm/ItineraryForm';
-import Login from "../Login/Login";
-
 
 class Dashboard extends React.Component {
   render() {
