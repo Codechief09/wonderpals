@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
-import users from './users-reducer';
+import token from './token-reducer';
 
 export default combineReducers({
-  users
+  token
 });

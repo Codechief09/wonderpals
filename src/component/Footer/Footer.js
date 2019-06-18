@@ -2,7 +2,7 @@ import React from "react";
 import './Footer.scss';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Container, Typography, IconButton, Icon } from '@material-ui/core';
+import { Box, Typography, IconButton, Icon } from '@material-ui/core';
 // import { DeleteIcon } from '@material-ui/icons';
 
 export default class Footer extends React.Component {

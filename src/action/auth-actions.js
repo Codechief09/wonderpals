@@ -17,7 +17,6 @@ const LOGIN_ROUTE = 'login';
 export const signupRequest = user => store => {
   return superagent.post(`${API_URL}${SIGNUP_ROUTE}`)
     .send(user)
-    .withCredentials()
     .then(response => {
       return store.dispatch(set(response.text));
     })
@@ -25,11 +24,10 @@ export const signupRequest = user => store => {
 };
 
 export const loginRequest = formData => store => {
-  return superagent.get(`${API_URL}${LOGIN_ROUTE}`)
+  return superagent.post(`${API_URL}${LOGIN_ROUTE}`)
     .auth(formData.email, formData.password)
     // .withCredentials()
     .then(response => {
-      console.log(response.body)
       return store.dispatch(set(response.body));
     })
     .catch(console.log);
