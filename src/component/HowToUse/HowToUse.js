@@ -15,7 +15,7 @@ export default class HowToUse extends React.Component {
   }
   render() {
     return (
-      <Container maxWidth='md'>
+      <Container maxWidth='lg'>
         <Typography variant='h3'>
           How to Use
         </Typography>

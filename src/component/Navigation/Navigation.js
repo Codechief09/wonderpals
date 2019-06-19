@@ -14,7 +14,7 @@ export class Navigation extends React.Component {
     let auth = true;
     return (
       <nav>
-        <AppBar position="fixed" className={this.props.class}>
+        <AppBar position={this.props.position} className={this.props.class}>
           <Toolbar>
             <Typography variant="h6" color="inherit">
               WanderPal

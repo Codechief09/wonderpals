@@ -30,7 +30,7 @@ export class Landing extends React.Component {
           <About/>
           <HowToUse/>
         </div>
-        <Navigation class='landing-nav'/>
+        <Navigation class='landing-nav' props='fixed'/>
         <Footer/>
       </section>
     );

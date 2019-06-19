@@ -20,6 +20,10 @@ ul {
     position: absolute;
 }
 header {
-    width: 100% !important;
     box-sizing: border-box !important;
+}
+
+.MuiAppBar-root {
+    left: 0 !important;
+    width: calc(100vw - 20px) !important;
 }

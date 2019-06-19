@@ -6,7 +6,7 @@ import { Typography, Container } from '@material-ui/core';
 export default class About extends React.Component {
   render() {
     return (
-      <Container id='about' maxWidth='md'>
+      <Container id='about' maxWidth='lg'>
         <Typography variant='h3'>
           About
         </Typography>

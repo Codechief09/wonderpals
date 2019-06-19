@@ -2,7 +2,7 @@ import React from "react";
 import './Footer.scss';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Typography, IconButton, Icon } from '@material-ui/core';
+import { Grid, Container, Typography, IconButton, Icon } from '@material-ui/core';
 // import { DeleteIcon } from '@material-ui/icons';
 
 export default class Footer extends React.Component {
@@ -20,16 +20,16 @@ export default class Footer extends React.Component {
   render() {
     const classes = this.useStyles();
     return (
-      <Box className="footer" maxWidth="false">
-        <div className="footer inside">
+      <Grid className="footer" maxWidth="false">
+        <Container maxWidth="lg">
           <Typography variant='h6'>
             WanderPal
           </Typography>
           <IconButton className={classes.button} aria-label="Delete">
             <Icon>fab fa-github</Icon>
           </IconButton>
-        </div>
-      </Box>
+        </Container>
+      </Grid>
     );
   }
 }
