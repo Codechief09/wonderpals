@@ -5,9 +5,6 @@ import Navigation from "../Navigation/Navigation";
 //import {object} from "prop-types";
 import './Itinerary.scss';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-
-
 
 class Itinerary extends React.Component {
   constructor(props) {

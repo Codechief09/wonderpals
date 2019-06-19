@@ -14,9 +14,9 @@ export default class Day extends React.Component{
                     <Typography component="h5">
                       {this.props.date}
                     </Typography>
-                    <List component="ul" className="hoursList">
+                    <List component="div" className="hoursList">
                       {this.props.hours.map(hour=>
-                        <ListItem component="li">
+                        <ListItem button>
                             <ListItemText primary={`${hour.hourTime} : ${hour.eventName ? hour.eventName : 'Available'}`}/>
                         </ListItem>
                       )}
