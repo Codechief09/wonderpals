@@ -5,8 +5,9 @@ import {Redirect} from 'react-router-dom';
 
 import Navigation from '../Navigation/Navigation';
 import ItineraryCarousel from '../ItineraryCarousel/ItineraryCarousel';
-import { Typography, Container } from '@material-ui/core';
 import ItineraryForm from '../ItineraryForm/ItineraryForm';
+import Footer from '../Footer/Footer';
+import { Typography, Container } from '@material-ui/core';
 
 class Dashboard extends React.Component {
   name = () => {
@@ -29,7 +30,7 @@ class Dashboard extends React.Component {
     return (
       <div>
         { this.props.token ? undefined : <Redirect to='/'/> }
-        <Navigation class='dashboard-nav'/>
+        <Navigation class='dashboard-nav' position='static'/>
         <Container id='dashboard' maxWidth='lg'>
             <div><ItineraryForm/></div>
           <Typography variant='h4' mb={2}>
@@ -46,6 +47,7 @@ class Dashboard extends React.Component {
           <ItineraryCarousel/>
         </Container>
 
+        <Footer/>
       </div>
     )
   }
