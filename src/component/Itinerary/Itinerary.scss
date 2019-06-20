@@ -1,0 +1,24 @@
+#itineraryHeader{
+  position: absolute;
+  top: 75px;
+  width: 100%;
+  //border:dotted;
+}
+#dayContainerDiv{
+  position: absolute;
+  top: 175px;
+  width: 100%;
+  //border: dashed;
+}
+
+.dayPaper{
+  width: 250px;
+  height: 500px;
+  overflow: scroll;
+}
+.hoursList{
+  position: relative;
+}
+.timeButton{
+  height: 20px;
+}
