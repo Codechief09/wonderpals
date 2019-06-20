@@ -18,13 +18,50 @@ class Itinerary extends React.Component {
         itineraryName: "testItinerary",
         itineraryLocation: "lab",
         arrayOfDays: ['4/20', '4/21', '4/22'],
-      }
+      },
+      hours: [],
     };
   }
+
+  makeHours = () =>{
+    for(let i = 0; i < 48; i++){
+      let j = null;
+      let hour = null;
+      let min = null;
+      let suffix = 'am';
+      if(i > 1){
+        j = i * 30;
+        if(j % 60){
+          hour = `${Math.floor(j / 60)}`;
+          min = '30';
+        }else{
+          hour = `${Math.floor(j / 60)}`;
+          min = '00';
+        }
+        if(hour > 12){
+          hour -= 12;
+          suffix = 'pm'
+        }
+      }else if(i === 1){
+        hour = '12';
+        min = '30';
+      }else if(i === 0){
+        hour = '12';
+        min = '00'
+      }
+      let str = hour + ':' + min + suffix;
+      this.state.hours.push(str);
+    }
+  };
+
+
+
+
 
   render() {
     return (
       <div>
+        {this.makeHours()}
         <Navigation />
         <div id="itineraryHeader" style={this.state.itineraryHeaderStyle}>
           <h1>{this.state.testItinerary.itineraryName}</h1>
@@ -42,6 +79,7 @@ class Itinerary extends React.Component {
             <Grid item>
               <Day className="paper"
                    date={day}
+                   hours = {this.state.hours}
               />
             </Grid>
           )}

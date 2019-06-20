@@ -10,12 +10,15 @@
   width: 100%;
   //border: dashed;
 }
-.dayDiv{
-  width: auto;
-}
+
 .dayPaper{
   width: 250px;
+  height: 500px;
+  overflow: scroll;
 }
 .hoursList{
   position: relative;
+}
+.timeButton{
+  height: 20px;
 }
