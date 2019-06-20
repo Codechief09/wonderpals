@@ -32,7 +32,7 @@ class Dashboard extends React.Component {
         {/*{ this.props.token ? undefined : <Redirect to='/'/> }*/}
         <Navigation class='dashboard-nav' position='static'/>
         <Container id='dashboard' maxWidth='lg'>
-            <div><ItineraryForm/></div>
+            <div><ItineraryForm userId={this.props.token[1]._id}/></div>
           <Typography variant='h4' mb={2}>
             Welcome back, {this.name()}!
           </Typography>
@@ -55,7 +55,7 @@ class Dashboard extends React.Component {
 const mapStateToProps = state => {
   return{
     token: state.token,
-    currentUser: state.currentUser
+    itineraries: state.itineraries
   }
 };
 // const mapDispatchToProps = dispatch => {

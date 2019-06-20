@@ -1,17 +1,28 @@
-import uuid from 'uuid';
+import superagent from 'superagent';
 
-export const createItinerary = (itinerary) => {
-	return {
-		type: 'CATEGORY_CREATE',
-		payload: {
-			id: uuid(),
-			name: itinerary.name,
-			location: itinerary.location,
-			dateStart: itinerary.dateStart,
-			dateEnd: itinerary.dateEnd,
-			details: itinerary.details
-		}
-	}
+const API_URL = process.env.REACT_APP_API_KEY;
+const CREATE_ITINERARY_ROUTE = 'create';
+const GET_ITINERARIES_ROUTE = 'dashboard';
+
+export const create = (itinerary) => ({
+	type: 'CREATE_ITINERARY',
+	payload: itinerary
+});
+
+export const createItinerary = itinerary => store => {
+	return superagent.post(`${API_URL}${CREATE_ITINERARY_ROUTE}`)
+		.send(itinerary)
+		.then(response => {
+			return store.dispatch(create(response.text));
+		})
+};
+
+export const getItineraries = () => store => {
+	return superagent.get(`${API_URL}${GET_ITINERARIES_ROUTE}`)
+		.then(response => {
+			// return store.dispatch(set(response.body));
+		})
+		.catch(console.log);
 };
 
 export const updateItinerary = (itinerary) => {
@@ -27,3 +38,4 @@ export const deleteItinerary = (itinerary) => {
 		payload: itinerary,
 	}
 };
+

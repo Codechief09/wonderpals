@@ -9,7 +9,6 @@ export const remove = () => ({
   type: 'TOKEN_REMOVE',
 });
 
-
 const API_URL = process.env.REACT_APP_API_KEY;
 const SIGNUP_ROUTE = 'signup';
 const LOGIN_ROUTE = 'login';
