@@ -17,34 +17,7 @@ class Itinerary extends React.Component {
       testItinerary: {
         itineraryName: "testItinerary",
         itineraryLocation: "lab",
-        arrayOfDays: [
-          {
-            date: "4/20",
-            hours: [
-              { filled: false, eventName: null, hourTime: "9am" },
-              { filled: true, eventName: "breakfast", hourTime: "10am" },
-              { filled: false, eventName: null, hourTime: "11am" },
-              { filled: true, eventName: "hike", hourTime: "12pm" },
-              { filled: true, eventName: "hike", hourTime: "1pm" },
-              { filled: false, eventName: null, hourTime: "2pm" },
-              { filled: true, eventName: "dinner", hourTime: "3pm" },
-              { filled: false, eventName: null, hourTime: "4pm" }
-            ]
-          },
-          {
-            date: "4/21",
-            hours: [
-              { filled: false, eventName: null, hourTime: "9am" },
-              { filled: false, eventName: null, hourTime: "10am" },
-              { filled: false, eventName: null, hourTime: "11am" },
-              { filled: true, eventName: "run", hourTime: "12am" },
-              { filled: true, eventName: "stretch", hourTime: "1pm" },
-              { filled: true, eventName: "snack", hourTime: "2pm" },
-              { filled: true, eventName: "yoga", hourTime: "3pm" },
-              { filled: true, eventName: "yoga", hourTime: "4pm" }
-            ]
-          }
-        ]
+        arrayOfDays: ['4/20', '4/21', '4/22'],
       }
     };
   }
@@ -68,8 +41,7 @@ class Itinerary extends React.Component {
           {this.state.testItinerary.arrayOfDays.map(day=>
             <Grid item>
               <Day className="paper"
-                   hours={day.hours}
-                   date={day.date}
+                   date={day}
               />
             </Grid>
           )}
