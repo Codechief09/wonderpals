@@ -7,3 +7,7 @@
 nav ul {
   @include horizontal-list;
 }
+
+.display-none {
+  display: none
+}

@@ -2,7 +2,12 @@
   margin-top: 100px;
 }
 
-.dashboard-nav * {
-  color: #282c34 !important;
-  background: none !important;
+.dashboard-nav {
+  background-color: white;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0)) !important;
+  box-shadow: none !important;
+
+  * {
+    color: #282c34 !important;
+  }
 }
