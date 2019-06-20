@@ -8,8 +8,9 @@ import Footer from '../Footer/Footer';
 
 
 import { Box } from '@material-ui/core';
+import {connect} from "react-redux";
 
-export default class Landing extends React.Component {
+export class Landing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,9 +30,15 @@ export default class Landing extends React.Component {
           <About/>
           <HowToUse/>
         </div>
-        <Navigation class='landing-nav'/>
+        <Navigation class='landing-nav' props='fixed'/>
         <Footer/>
       </section>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  token: state.token,
+});
+
+export default connect(mapStateToProps, null)(Landing);

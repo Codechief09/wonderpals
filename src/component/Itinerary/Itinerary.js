@@ -54,10 +54,6 @@ class Itinerary extends React.Component {
     }
   };
 
-
-
-
-
   render() {
     return (
       <div>
