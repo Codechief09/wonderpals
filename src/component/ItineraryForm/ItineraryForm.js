@@ -33,12 +33,15 @@ export class ItineraryForm extends React.Component {
 
 		this.state = {
 			isModalOpen: false,
+
+			userId: this.props.token[1]._id,
 			name: '',
 			location: '',
 			dateStart: new Date(),
 			dateEnd: new Date(),
 			details: '',
 			image: ''
+
 		}
 	}
 
@@ -48,7 +51,6 @@ export class ItineraryForm extends React.Component {
 
 	handleChange = event => {
 		this.setState({[event.target.id]: event.target.value});
-		console.log(this.state);
 	};
 
 	handleDateChange = (date, id) => {
@@ -64,7 +66,6 @@ export class ItineraryForm extends React.Component {
 	};
 
 	render () {
-
 
 		return (
 
@@ -180,7 +181,8 @@ export class ItineraryForm extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	itineraries: state.token
+	itineraries: state.token,
+	token: state.token
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -13,26 +13,26 @@ class Dashboard extends React.Component {
   name = () => {
     return this.props.token ? this.props.token[1].name.split(' ')[0] : 'friend';
   };
-
-  componentWillMount() {
-    if (!this.props.token) {
-      return (
-        <div>
-          <Redirect to='/'/>
-        </div>
-      )
-    }
-  }
+  //
+  // componentWillMount() {
+  //   if (!this.props.token) {
+  //     return (
+  //       <div>
+  //         <Redirect to='/'/>
+  //       </div>
+  //     )
+  //   }
+  // }
 
   render() {
 
 
     return (
       <div>
-        { this.props.token ? undefined : <Redirect to='/'/> }
+        {/*{ this.props.token ? undefined : <Redirect to='/'/> }*/}
         <Navigation class='dashboard-nav' position='static'/>
         <Container id='dashboard' maxWidth='lg'>
-            <div><ItineraryForm/></div>
+            <div><ItineraryForm userId={this.props.token[1]._id}/></div>
           <Typography variant='h4' mb={2}>
             Welcome back, {this.name()}!
           </Typography>
@@ -55,7 +55,7 @@ class Dashboard extends React.Component {
 const mapStateToProps = state => {
   return{
     token: state.token,
-    currentUser: state.currentUser
+    itineraries: state.itineraries
   }
 };
 // const mapDispatchToProps = dispatch => {
