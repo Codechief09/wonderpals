@@ -1,16 +1,23 @@
 import React from "react";
-import Day from "../Day/Day";
 import { connect } from "react-redux";
-import Navigation from "../Navigation/Navigation";
-//import {object} from "prop-types";
-import "./Itinerary.scss";
-import Grid from "@material-ui/core/Grid";
+import { Redirect } from "react-router-dom";
 import * as itineraryActions from "../../action/itinerary-actions";
+
+import Navigation from "../Navigation/Navigation";
+import Day from "../Day/Day";
+import ItineraryForm from "../ItineraryForm/ItineraryForm";
+import Grid from "@material-ui/core/Grid";
+import "./Itinerary.scss";
+
+
 
 class Itinerary extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
+      id: this.props.history.location.state.id,
+      deleted: false,
       itineraryHeaderStyle: {
         backgroundColor: "#008080"
         // backgroundImage://img link here
@@ -23,6 +30,21 @@ class Itinerary extends React.Component {
       hours: []
     };
   }
+
+  componentWillMount() {
+    if (!this.props.token) {
+      return (<Redirect to='/'/>);
+    }
+
+    // Before mounted, get all days in itinerary
+    // this.props.getAll(this.props.token.user._id);
+  }
+
+  handleDelete = (id) => {
+    this.props.deleteItinerary(id);
+    this.setState({deleted: true});
+  };
+
 
   makeHours = () => {
     for (let i = 0; i < 48; i++) {
@@ -56,13 +78,17 @@ class Itinerary extends React.Component {
   };
 
   render() {
+
+    // if (!this.props.token) {
+    //   return (
+    //     <Redirect to='/'/>
+    //   );
+    // }
+
     let { id } = this.props;
-    console.log(this.props)
     return (
       <div>
-        <button onClick={() => this.props.updateItinerary(id)}>Update</button>
-        <button>Delete</button>
-
+        { this.state.deleted ? <Redirect to='/dashboard'/> : undefined}
         {this.makeHours()}
         <Navigation/>
         <div id="itineraryHeader" style={this.state.itineraryHeaderStyle}>
@@ -70,21 +96,26 @@ class Itinerary extends React.Component {
           <h3>{this.state.testItinerary.itineraryLocation}</h3>
         </div>
 
-        <Grid
-          container
-          direction="row"
-          justify="space-evenly"
-          alignItems="center"
-          id="dayContainerDiv"
-        >
-          {this.state.testItinerary.arrayOfDays.map(day =>
-            <Grid item>
-              <Day className="paper"
-                   date={day}
-                   hours={this.state.hours}
-              />
-            </Grid>
-          )}
+        <Grid>
+
+          <Grid
+            container
+            direction="row"
+            justify="space-evenly"
+            alignItems="center"
+            id="dayContainerDiv"
+          >
+            <ItineraryForm/>
+            <button onClick={() => this.handleDelete(this.state.id)}>Delete</button>
+            {this.state.testItinerary.arrayOfDays.map(day =>
+              <Grid item>
+                <Day className="paper"
+                     date={day}
+                     hours={this.state.hours}
+                />
+              </Grid>
+            )}
+          </Grid>
         </Grid>
       </div>
     );
@@ -98,7 +129,7 @@ const mapStateToProps = state => {
   };
 };
 const mapDispatchToProps = dispatch => ({
-  deleteItinerary: (id) => dispatch(itineraryActions.getItineraries(id)),
+  deleteItinerary: (id) => dispatch(itineraryActions.deleteItinerary(id)),
   updateItinerary: (id) => dispatch(itineraryActions.getItineraries(id))
 });
 

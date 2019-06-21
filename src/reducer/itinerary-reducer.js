@@ -16,9 +16,7 @@ export default (state = {}, { type, payload }) => {
       // newState[payload.id] = payload;
       return newState;
     case "DELETE_ITINERARY":
-      let updatedState = { ...state };
-      // delete updatedState[payload.id];
-      return updatedState;
+      return state;
     default:
       return state;
   }
