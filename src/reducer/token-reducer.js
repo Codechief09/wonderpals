@@ -1,4 +1,4 @@
-export default (state = {}, {type, payload}) => {
+export default (state = null, {type, payload}) => {
   const token = payload;
   switch(type) {
     case 'TOKEN_SET':
@@ -6,6 +6,6 @@ export default (state = {}, {type, payload}) => {
     case 'TOKEN_REMOVE':
       return null;
     default:
-      return null;
+      return state;
   }
 };
