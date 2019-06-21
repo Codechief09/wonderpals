@@ -19,8 +19,11 @@ export class ItineraryCarousel extends React.Component {
           )
         }
       </Grid>
+
     )
+
   }
+<<<<<<< HEAD
 }
 
 const mapStateToProps = state => {
@@ -35,3 +38,7 @@ const mapStateToProps = state => {
 // });
 
 export default connect(mapStateToProps, null)(ItineraryCarousel);
+=======
+
+}
+>>>>>>> 5bc7b36da74cb4cea4da63f065c0607a593f8bef
