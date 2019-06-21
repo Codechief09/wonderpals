@@ -8,14 +8,16 @@ export default (state = {}, { type, payload }) => {
     case "GET_ALL":
       return payload;
     case "CREATE_ITINERARY":
-      return { ...state, [payload._id]: payload };
+      return [...state, payload];
     case "EDIT_ITINERARY":
-      let newState = { ...state };
-      newState[payload.id] = payload;
+      // figure this out for Mongo
+      let newState = 'hi';
+      // let newState = { ...state };
+      // newState[payload.id] = payload;
       return newState;
     case "DELETE_ITINERARY":
       let updatedState = { ...state };
-      delete updatedState[payload.id];
+      // delete updatedState[payload.id];
       return updatedState;
     default:
       return state;

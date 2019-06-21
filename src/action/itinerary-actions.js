@@ -25,7 +25,10 @@ export const createItinerary = itinerary => store => {
 export const getItineraries = id => store => {
   return superagent.get(`${API_URL}${GET_ITINERARIES_ROUTE}/${id}`)
     .then(response => {
-      return store.dispatch(get(response.body));
+      let sorted = response.body.sort((a, b) => {
+        return new Date(b.dateStart) - new Date(a.dateStart)
+      });
+      return store.dispatch(get(sorted));
     })
     .catch(console.log);
 };

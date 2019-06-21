@@ -1,14 +1,22 @@
 import React from 'react';
 import {Card, CardActionArea, CardContent, CardMedia, Typography} from '@material-ui/core';
+import { Redirect } from "react-router-dom";
 
 export default class ItineraryCard extends React.Component {
+
+	handleClick = () => {
+	  console.log('click')
+		return (
+			<Redirect to='/itinerary'/>
+		)
+	};
 
 	render() {
 		const { itinerary } = this.props;
 
 		return(
 			<Card>
-				<CardActionArea>
+				<CardActionArea onClick={this.handleClick}>
 					<CardMedia
 						height='185px'
 						component="img"
