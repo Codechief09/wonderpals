@@ -12,31 +12,22 @@ import * as authActions from "../../action/auth-actions";
 import * as itineraryActions from '../../action/itinerary-actions';
 
 class Dashboard extends React.Component {
+  componentWillMount() {
+    this.props.getAll(this.props.token.user._id);
+  }
+
   name = () => {
     return this.props.token ? this.props.token.name : "friend";
   };
 
-  componentWillMount() {
-    // if (!this.props.token) {
-    //   return (
-    //     <div>
-    //       <Redirect to='/'/>
-    //     </div>
-    //   );
-    // }
-
-    this.props.getAll(this.props.token.user._id);
-    console.log('get')
-
-
-  }
 
   render() {
 
 
+
     return (
       <div>
-        {/*{ this.props.token ? undefined : <Redirect to='/'/> }*/}
+        { this.props.token ? undefined : <Redirect to='/'/> }
         <Navigation class='dashboard-nav' position='static'/>
         <Container id='dashboard' maxWidth='lg'>
           <div><ItineraryForm userId={this.props.token.user._id}/></div>
@@ -46,12 +37,12 @@ class Dashboard extends React.Component {
           <Typography variant='h5'>
             See upcoming trips
           </Typography>
-          <ItineraryCarousel/>
+          { this.props.itineraries.length > 0 ? <ItineraryCarousel itineraries={this.props.itineraries}/> : undefined }
 
           <Typography variant='h5'>
             See past trips
           </Typography>
-          <ItineraryCarousel/>
+          { this.props.itineraries.length > 0 ? <ItineraryCarousel itineraries={this.props.itineraries}/> : undefined }
         </Container>
 
         <Footer/>

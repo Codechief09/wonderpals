@@ -6,7 +6,7 @@ const initialState = {
 export default (state = {}, { type, payload }) => {
   switch (type) {
     case "GET_ALL":
-      return { ...state };
+      return payload;
     case "CREATE_ITINERARY":
       return { ...state, [payload._id]: payload };
     case "EDIT_ITINERARY":

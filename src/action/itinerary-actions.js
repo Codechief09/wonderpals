@@ -25,7 +25,6 @@ export const createItinerary = itinerary => store => {
 export const getItineraries = id => store => {
   return superagent.get(`${API_URL}${GET_ITINERARIES_ROUTE}/${id}`)
     .then(response => {
-      console.log(response)
       return store.dispatch(get(response.body));
     })
     .catch(console.log);
