@@ -13,7 +13,7 @@ export class ItineraryCarousel extends React.Component {
       <Grid className='carousel' container justify='flex-start' spacing={2}>
         {
           itineraries.map(itinerary =>
-            <Grid item xs={3} key={itinerary.id}>
+            <Grid item xs={3}>
               <ItineraryCard itinerary={itinerary}/>
             </Grid>
           )
@@ -23,7 +23,6 @@ export class ItineraryCarousel extends React.Component {
     )
 
   }
-<<<<<<< HEAD
 }
 
 const mapStateToProps = state => {
@@ -38,7 +37,4 @@ const mapStateToProps = state => {
 // });
 
 export default connect(mapStateToProps, null)(ItineraryCarousel);
-=======
 
-}
->>>>>>> 5bc7b36da74cb4cea4da63f065c0607a593f8bef
