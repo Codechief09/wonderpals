@@ -54,6 +54,9 @@ export default class ItineraryCarousel extends React.Component {
           )
         }
       </Grid>
+
     )
+
   }
+
 }
