@@ -7,7 +7,7 @@ import Navigation from "../Navigation/Navigation";
 import ItineraryCarousel from "../ItineraryCarousel/ItineraryCarousel";
 import ItineraryForm from "../ItineraryForm/ItineraryForm";
 import Footer from "../Footer/Footer";
-import { Typography, Container } from "@material-ui/core";
+import { Typography, Container, Divider } from "@material-ui/core";
 import * as itineraryActions from "../../action/itinerary-actions";
 
 class Dashboard extends React.Component {
@@ -34,22 +34,26 @@ class Dashboard extends React.Component {
 
     return (
       <div>
+
         {this.props.token ? undefined : <Redirect to='/'/>}
+
         <Navigation class='dashboard-nav' position='static'/>
         <Container id='dashboard' maxWidth='lg'>
-          <div><ItineraryForm userId={this.props.token.user._id}/></div>
           <Typography variant='h4' mb={2}>
             Welcome back, {this.name()}!
           </Typography>
+          <div id="createNew"><ItineraryForm userId={this.props.token.user._id}/></div>
+          <Divider/>
           <Typography variant='h5'>
             See upcoming trips
           </Typography>
           {this.props.itineraries.length > 0 ? <ItineraryCarousel itineraries={this.props.itineraries}/> : undefined}
 
-          <Typography variant='h5'>
-            See past trips
-          </Typography>
-          {this.props.itineraries.length > 0 ? <ItineraryCarousel itineraries={this.props.itineraries}/> : undefined}
+          {/*<Divider/>*/}
+          {/*<Typography variant='h5'>*/}
+          {/*See past trips*/}
+          {/*</Typography>*/}
+          {/*{this.props.itineraries.length > 0 ? <ItineraryCarousel itineraries={this.props.itineraries}/> : undefined}*/}
         </Container>
 
         <Footer/>

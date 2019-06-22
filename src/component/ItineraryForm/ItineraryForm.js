@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import DateFnsUtils from "@date-io/date-fns";
 import * as itineraryActions from "../../../src/action/itinerary-actions";
 
@@ -7,7 +7,8 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@material-ui/core";
+import { Card, CardActionArea, CardMedia } from "@material-ui/core";
+import { Edit } from "@material-ui/icons";
 import AddImage from "../../assets/upload.jpg";
 
 import {
@@ -79,8 +80,10 @@ export class ItineraryForm extends React.Component {
 
       <div>
 
-        <Button variant={this.props.variant} color="primary" onClick={() => this.handleModal(true)}>
+        <Button size="small" variant={this.props.variant ? this.props.variant : "contained"} color="primary"
+                onClick={() => this.handleModal(true)}>
           {buttonText}
+          <Edit/>
         </Button>
 
         <Dialog open={this.state.isModalOpen}

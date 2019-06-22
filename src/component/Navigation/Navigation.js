@@ -24,6 +24,7 @@ export class Navigation extends React.Component {
             <ul>
               <li><Link to='/'><Button>Home</Button></Link></li>
               <li><HashLink to='/#about'><Button>About</Button></HashLink></li>
+              { this.props.token ? <li><Link to='/dashboard'><Button>Trips</Button></Link></li> : undefined }
               <li><AuthForm type={type}/></li>
             </ul>
           </Toolbar>

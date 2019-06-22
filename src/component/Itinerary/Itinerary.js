@@ -61,6 +61,8 @@ class Itinerary extends React.Component {
       backgroundImage: "url(" + this.state.itinerary.image + ")"
     };
 
+    let date = Object.values(days);
+
     return (
       <div>
         {this.props.token ? undefined : <Redirect to='/'/>}
@@ -79,7 +81,7 @@ class Itinerary extends React.Component {
                 <ItineraryForm variant="outlined" color="primary" itineraryId={this.state.itinerary._id}/>
               </Grid>
               <Grid>
-                <Button variant="outlined" color="primary"
+                <Button size="small" variant="outlined" color="primary"
                         onClick={() => this.handleDelete(this.state.itinerary._id)}>
                   <Delete/>
                   Delete
@@ -90,18 +92,25 @@ class Itinerary extends React.Component {
             <Grid
               container
               direction="row"
-              justify="space-evenly"
-              alignItems="center"
+              justify="flex-start"
+              spacing={2}
               id="dayContainerDiv"
             >
 
               {
-                days.map((day, index) =>
-                  <Grid item key={index}>
-                    <Day className="paper"
-                         date={Object.keys(day)[index]}
-                    />
-                  </Grid>
+                days.map((day, index) => {
+
+
+
+                  return (
+                      <Grid item xs={3} key={index}>
+                        <Typography variant="h4">
+                          {JSON.stringify(date[index]).split('T')[0]}
+                        </Typography>
+                        <Day className="paper"/>
+                      </Grid>
+                    )
+                  }
                 )}
             </Grid>
           </Container>

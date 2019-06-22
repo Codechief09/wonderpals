@@ -47,9 +47,6 @@ export default class Day extends React.Component{
     return(
       <div>
         <Paper className="dayPaper">
-          <Typography component="h5">
-            {this.props.date}
-          </Typography>
           <List component="div" className="hoursList">
             {hours.map((hour, index)=>
               <ListItem button className="timeButton" key={hour + index}>
