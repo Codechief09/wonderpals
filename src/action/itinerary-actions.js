@@ -33,11 +33,24 @@ export const getItineraries = id => store => {
     .catch(console.log);
 };
 
-export const updateItinerary = (itinerary) => {
+export const update = itinerary => {
   return {
-    type: "CATEGORY_UPDATE",
+    type: 'UPDATE_ITINERARY',
     payload: itinerary
-  };
+  }
+};
+
+export const updateItinerary = formData => store => {
+  let { id } = formData;
+  return superagent.put(`${API_URL}itinerary/${id}`)
+    .send(formData)
+    .then(response => {
+      let sorted = response.body.sort((a, b) => {
+        return new Date(b.dateStart) - new Date(a.dateStart);
+      });
+      return store.dispatch(update(sorted));
+    })
+    .catch(console.log);
 };
 
 export const deleteOne = (id) => ({
@@ -46,7 +59,6 @@ export const deleteOne = (id) => ({
 });
 
 export const deleteItinerary = id => store => {
-  console.log('hi')
   return superagent.delete(`${API_URL}itineraries/${id}`)
     .then(() => {
       return store.dispatch(deleteOne(id))

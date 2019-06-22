@@ -27,6 +27,7 @@ export class Landing extends React.Component {
               <h1>{ this.state.message }</h1>
             </div>
           </Box>
+          <a name="#about"/>
           <About/>
           <HowToUse/>
         </div>

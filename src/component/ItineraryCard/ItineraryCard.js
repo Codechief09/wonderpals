@@ -6,7 +6,7 @@ export default class ItineraryCard extends React.Component {
 
   state = {
     handleClick: false,
-    id: this.props.itinerary._id
+    itinerary: this.props.itinerary
   };
 
 
@@ -16,7 +16,7 @@ export default class ItineraryCard extends React.Component {
     if (this.state.handleClick) {
       return <Redirect to={{
         pathname: "/itinerary",
-        state: { id: this.state.id }
+        state: { itinerary: itinerary }
       }} push={true}/>;
     }
 

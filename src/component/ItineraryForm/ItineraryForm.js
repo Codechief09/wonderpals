@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import DateFnsUtils from "@date-io/date-fns";
 import * as itineraryActions from "../../../src/action/itinerary-actions";
-// import DateFnsUtils from "date-fns";
 
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -40,7 +39,8 @@ export class ItineraryForm extends React.Component {
       dateStart: new Date(),
       dateEnd: new Date(),
       details: "",
-      image: ""
+      image: "",
+      id: ""
 
     };
   }
@@ -59,7 +59,12 @@ export class ItineraryForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.mappedCreateItinerary(this.state);
+    if (this.props.itineraryId) {
+      this.props.mappedUpdateItinerary(this.state);
+    } else {
+      this.props.mappedCreateItinerary(this.state);
+    }
+
     this.setState({ isModalOpen: false });
     this.setState(defaultState);
     this.handleModal(false);
@@ -67,12 +72,15 @@ export class ItineraryForm extends React.Component {
 
   render() {
 
+    const { itineraryId } = this.props;
+    const buttonText = itineraryId ? "Update Itinerary" : "Create New Itinerary";
+
     return (
 
       <div>
 
-        <Button onClick={() => this.handleModal(true)}>
-          New Itinerary
+        <Button variant={this.props.variant} color="primary" onClick={() => this.handleModal(true)}>
+          {buttonText}
         </Button>
 
         <Dialog open={this.state.isModalOpen}
@@ -98,7 +106,7 @@ export class ItineraryForm extends React.Component {
               </label>
             </CardActionArea>
 
-            <DialogTitle id="form-dialog-title">Create New Itinerary</DialogTitle>
+            <DialogTitle id="form-dialog-title">{buttonText}</DialogTitle>
 
             <DialogContent>
 
@@ -130,17 +138,17 @@ export class ItineraryForm extends React.Component {
                   <DatePicker
                     id='itineraryDateStart'
                     value={this.state.dateStart}
-                    onChange={(date, id) => this.handleDateChange(date, "dateStart")}
+                    onChange={(date) => this.handleDateChange(date, "dateStart")}
                     label='Start Date'
-                    format="MM/dd/yyyy"
+                    format="dd-MM-yyyy"
                   />
 
                   <DatePicker
                     id='itineraryDateEnd'
                     value={this.state.dateEnd}
-                    onChange={(date, id) => this.handleDateChange(date, "dateEnd")}
+                    onChange={(date) => this.handleDateChange(date, "dateEnd")}
                     label='End Date'
-                    format="MM/dd/yyyy"
+                    format="dd-MM-yyyy"
                   />
                 </MuiPickersUtilsProvider>
 
@@ -156,7 +164,6 @@ export class ItineraryForm extends React.Component {
                   fullWidth
                 />
 
-
                 <Button
                   className='submitButton'
                   color='primary'
@@ -164,7 +171,7 @@ export class ItineraryForm extends React.Component {
                   variant='contained'
                   fullWidth
                 >
-                  Create
+                  {buttonText.split(" ")[0]}
                 </Button>
 
               </form>
@@ -186,7 +193,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  mappedCreateItinerary: (formData) => dispatch(itineraryActions.createItinerary(formData))
+  mappedCreateItinerary: (formData) => dispatch(itineraryActions.createItinerary(formData)),
+  mappedUpdateItinerary: (formData) => dispatch(itineraryActions.updateItinerary(formData))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItineraryForm);

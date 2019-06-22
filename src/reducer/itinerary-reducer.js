@@ -10,11 +10,7 @@ export default (state = {}, { type, payload }) => {
     case "CREATE_ITINERARY":
       return [...state, payload];
     case "EDIT_ITINERARY":
-      // figure this out for Mongo
-      let newState = 'hi';
-      // let newState = { ...state };
-      // newState[payload.id] = payload;
-      return newState;
+      return state;
     case "DELETE_ITINERARY":
       return state;
     default:
