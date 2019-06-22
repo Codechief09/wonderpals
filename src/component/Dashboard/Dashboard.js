@@ -32,6 +32,60 @@ class Dashboard extends React.Component {
       );
     }
 
+    const TEST = [
+      {
+        name: 'Summer Vacay in Mexico',
+        dateStart: '2019-07-04',
+        dateEnd: '2019-07-14',
+        location: 'Tulum, MX',
+        image: './assets/test/mx.jpg',
+        id: 1023910
+      },
+      {
+        name: `Chris's birthday in Vegas`,
+        dateStart: '2019-08-08',
+        dateEnd: '2019-08-11',
+        location: 'Las Vegas, NV',
+        image: './assets/test/vegas.jpg',
+        id: 204224
+      },
+      {
+        name: 'Labor day in Bend, OR',
+        dateStart: '2019-08-30',
+        dateEnd: '2019-09-02',
+        location: 'Bend, OR',
+        image:'./assets/test/bend.jpg',
+        id: 202231
+      },
+      {
+        name: 'Christmas in Charleston',
+        dateStart: '2019-12-24',
+        dateEnd: '2019-12-30',
+        location: 'Charleston, SC',
+        image: './assets/test/charleston.jpg',
+        id: 20531
+      }
+    ];
+
+    const TEST2 = [
+      {
+        name: 'Jessica goes to Turkey',
+        dateStart: '2019-05-04',
+        dateEnd: '2019-05-14',
+        location: 'Istanbul, Turkey',
+        image: './assets/test/turkey.jpg',
+        id: 1023910
+      },
+      {
+        name: `Party on the moon`,
+        dateStart: '2012-08-08',
+        dateEnd: '2012-08-11',
+        location: 'The Moon',
+        image: './assets/test/moon.jpg',
+        id: 204224
+      }
+    ];
+
     return (
       <div>
 
@@ -47,13 +101,12 @@ class Dashboard extends React.Component {
           <Typography variant='h5'>
             See upcoming trips
           </Typography>
-          {this.props.itineraries.length > 0 ? <ItineraryCarousel itineraries={this.props.itineraries}/> : undefined}
+          <ItineraryCarousel TEST={TEST}/>
 
-          {/*<Divider/>*/}
-          {/*<Typography variant='h5'>*/}
-          {/*See past trips*/}
-          {/*</Typography>*/}
-          {/*{this.props.itineraries.length > 0 ? <ItineraryCarousel itineraries={this.props.itineraries}/> : undefined}*/}
+          <Typography variant='h5'>
+            See past trips
+          </Typography>
+          <ItineraryCarousel TEST={TEST2}/>
         </Container>
 
         <Footer/>

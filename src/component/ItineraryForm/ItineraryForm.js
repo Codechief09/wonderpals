@@ -42,7 +42,6 @@ export class ItineraryForm extends React.Component {
       details: "",
       image: "",
       id: ""
-
     };
   }
 
@@ -52,6 +51,10 @@ export class ItineraryForm extends React.Component {
 
   handleChange = event => {
     this.setState({ [event.target.id]: event.target.value });
+  };
+
+  handleImageChange = event => {
+    this.setState({[event.target.id]: event.target.files[0]});
   };
 
   handleDateChange = (date, id) => {
@@ -97,9 +100,11 @@ export class ItineraryForm extends React.Component {
               <label>
                 <input
                   accept="image/*"
-                  id="contained-button-file"
+                  id="image"
+                  name="image"
                   type="file"
                   className='display-none'
+                  onChange={this.handleImageChange}
                 />
                 <CardMedia
                   height='200px'

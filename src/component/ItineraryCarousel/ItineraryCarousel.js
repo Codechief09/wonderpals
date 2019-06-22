@@ -7,12 +7,13 @@ import { connect } from "react-redux";
 export class ItineraryCarousel extends React.Component {
 
   render() {
-    const { itineraries } = this.props;
+
+    const {TEST} = this.props;
 
     return (
       <Grid className='carousel' container justify='flex-start' spacing={2}>
         {
-          itineraries.map(itinerary =>
+          TEST.map(itinerary =>
             <Grid item xs={3} key={itinerary._id}>
               <ItineraryCard itinerary={itinerary}/>
             </Grid>
