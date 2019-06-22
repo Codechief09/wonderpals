@@ -3,8 +3,9 @@ import Day from "../Day/Day";
 import { connect } from "react-redux";
 import Navigation from "../Navigation/Navigation";
 //import {object} from "prop-types";
-import './Itinerary.scss';
-import Grid from '@material-ui/core/Grid';
+import "./Itinerary.scss";
+import Grid from "@material-ui/core/Grid";
+import * as itineraryActions from "../../action/itinerary-actions";
 
 class Itinerary extends React.Component {
   constructor(props) {
@@ -17,48 +18,53 @@ class Itinerary extends React.Component {
       testItinerary: {
         itineraryName: "testItinerary",
         itineraryLocation: "lab",
-        arrayOfDays: ['4/20', '4/21', '4/22'],
+        arrayOfDays: ["4/20", "4/21", "4/22"]
       },
-      hours: [],
+      hours: []
     };
   }
 
-  makeHours = () =>{
-    for(let i = 0; i < 48; i++){
+  makeHours = () => {
+    for (let i = 0; i < 48; i++) {
       let j = null;
       let hour = null;
       let min = null;
-      let suffix = 'am';
-      if(i > 1){
+      let suffix = "am";
+      if (i > 1) {
         j = i * 30;
-        if(j % 60){
+        if (j % 60) {
           hour = `${Math.floor(j / 60)}`;
-          min = '30';
-        }else{
+          min = "30";
+        } else {
           hour = `${Math.floor(j / 60)}`;
-          min = '00';
+          min = "00";
         }
-        if(hour > 12){
+        if (hour > 12) {
           hour -= 12;
-          suffix = 'pm'
+          suffix = "pm";
         }
-      }else if(i === 1){
-        hour = '12';
-        min = '30';
-      }else if(i === 0){
-        hour = '12';
-        min = '00'
+      } else if (i === 1) {
+        hour = "12";
+        min = "30";
+      } else if (i === 0) {
+        hour = "12";
+        min = "00";
       }
-      let str = hour + ':' + min + suffix;
+      let str = hour + ":" + min + suffix;
       this.state.hours.push(str);
     }
   };
 
   render() {
+    let { id } = this.props;
+    console.log(this.props)
     return (
       <div>
+        <button onClick={() => this.props.updateItinerary(id)}>Update</button>
+        <button>Delete</button>
+
         {this.makeHours()}
-        <Navigation />
+        <Navigation/>
         <div id="itineraryHeader" style={this.state.itineraryHeaderStyle}>
           <h1>{this.state.testItinerary.itineraryName}</h1>
           <h3>{this.state.testItinerary.itineraryLocation}</h3>
@@ -71,11 +77,11 @@ class Itinerary extends React.Component {
           alignItems="center"
           id="dayContainerDiv"
         >
-          {this.state.testItinerary.arrayOfDays.map(day=>
+          {this.state.testItinerary.arrayOfDays.map(day =>
             <Grid item>
               <Day className="paper"
                    date={day}
-                   hours = {this.state.hours}
+                   hours={this.state.hours}
               />
             </Grid>
           )}
@@ -84,15 +90,18 @@ class Itinerary extends React.Component {
     );
   }
 }
+
 const mapStateToProps = state => {
   return {
-    days: state
+    days: state.days
     //itineraryBackgroundImage: ,
   };
 };
-const mapDispatchToProps = dispatch => {
-  return {};
-};
+const mapDispatchToProps = dispatch => ({
+  deleteItinerary: (id) => dispatch(itineraryActions.getItineraries(id)),
+  updateItinerary: (id) => dispatch(itineraryActions.getItineraries(id))
+});
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
