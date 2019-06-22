@@ -7,9 +7,9 @@ export default class HowToUse extends React.Component {
     super(props);
     this.state = {
       cardData: [
-        'Open the thing and do something.',
-        'Then, click the thing and do something else.',
-        'Then, go do the thing again ok.'
+        'Click the login button in the top right corner of the app.  Once logged in you will be redirected to your dashboard.',
+        'From your dashboard you can either create a new itinerary or view an itinerary that you\'ve already started.',
+        'While viewing your itinerary of vacation days, click an available time slot to add an event.'
       ]
     }
   }
