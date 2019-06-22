@@ -48,6 +48,7 @@ class Itinerary extends React.Component {
 
   render() {
 
+
     if (!this.props.token) {
       return (
         <Redirect to='/'/>
@@ -72,7 +73,7 @@ class Itinerary extends React.Component {
           <Box id='itineraryHeader' style={divStyle}>
             <div id='sub'>
               <h1>{this.state.itinerary.name}</h1>
-              <Typography variant="h6" color="inherit">{this.state.itinerary.location}</Typography>
+              <h4>{this.state.itinerary.location}</h4>
             </div>
           </Box>
           <Container>
@@ -99,9 +100,6 @@ class Itinerary extends React.Component {
 
               {
                 days.map((day, index) => {
-
-
-
                   return (
                       <Grid item xs={3} key={index}>
                         <Typography variant="h4">

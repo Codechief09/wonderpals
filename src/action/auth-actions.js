@@ -17,7 +17,7 @@ export const signupRequest = user => store => {
   return superagent.post(`${API_URL}${SIGNUP_ROUTE}`)
     .send(user)
     .then(response => {
-      return store.dispatch(set(response.text));
+      return store.dispatch(set(response.body));
     })
     .catch(console.log);
 };
