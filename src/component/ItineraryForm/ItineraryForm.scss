@@ -4,3 +4,13 @@
 .submitButton{
   margin-top: 10px !important;
 }
+
+.dashboard-nav {
+  background-color: white;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0)) !important;
+  box-shadow: none !important;
+
+  * {
+    color: #282c34 !important;
+  }
+}

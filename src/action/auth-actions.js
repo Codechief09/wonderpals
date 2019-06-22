@@ -25,7 +25,6 @@ export const signupRequest = user => store => {
 export const loginRequest = formData => store => {
   return superagent.post(`${API_URL}${LOGIN_ROUTE}`)
     .auth(formData.email, formData.password)
-    // .withCredentials()
     .then(response => {
       return store.dispatch(set(response.body));
     })

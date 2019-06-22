@@ -13,7 +13,7 @@ export class ItineraryCarousel extends React.Component {
       <Grid className='carousel' container justify='flex-start' spacing={2}>
         {
           itineraries.map(itinerary =>
-            <Grid item xs={3}>
+            <Grid item xs={3} key={itinerary._id}>
               <ItineraryCard itinerary={itinerary}/>
             </Grid>
           )

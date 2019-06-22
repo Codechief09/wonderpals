@@ -1,4 +1,5 @@
 import superagent from "superagent";
+import {isBefore} from "date-fns";
 
 const API_URL = process.env.REACT_APP_API_KEY;
 const CREATE_ITINERARY_ROUTE = "create";
@@ -10,7 +11,7 @@ export const create = (itinerary) => ({
 });
 
 export const get = (itinerary) => ({
-  type: 'GET_ALL',
+  type: "GET_ALL",
   payload: itinerary
 });
 
@@ -26,24 +27,53 @@ export const getItineraries = id => store => {
   return superagent.get(`${API_URL}${GET_ITINERARIES_ROUTE}/${id}`)
     .then(response => {
       let sorted = response.body.sort((a, b) => {
-        return new Date(b.dateStart) - new Date(a.dateStart)
+        return new Date(b.dateStart) - new Date(a.dateStart);
       });
+
+      // FUTURE: Adding past itineraries
+      // let pastItineraries = sorted.map((trip, index) => {
+      //   if (isBefore(new Date(trip.dateStart), new Date())){
+      //     pastItineraries.push(trip);
+      //     sorted.splice(1, index);
+      //   }
+      // });
+      //
+      // let itineraries = { current: sorted, past: pastItineraries };
+
       return store.dispatch(get(sorted));
     })
     .catch(console.log);
 };
 
-export const updateItinerary = (itinerary) => {
+export const update = itinerary => {
   return {
-    type: "CATEGORY_UPDATE",
+    type: 'UPDATE_ITINERARY',
     payload: itinerary
-  };
+  }
 };
 
-export const deleteItinerary = (itinerary) => {
-  return {
-    type: "CATEGORY_DELETE",
-    payload: itinerary
-  };
+export const updateItinerary = formData => store => {
+  let { id } = formData;
+  return superagent.put(`${API_URL}itineraries/${id}`)
+    .send(formData)
+    .then(response => {
+      let sorted = response.body.sort((a, b) => {
+        return new Date(b.dateStart) - new Date(a.dateStart);
+      });
+      return store.dispatch(update(sorted));
+    })
+    .catch(console.log);
+};
+
+export const deleteOne = (id) => ({
+  type: "DELETE_ITINERARY",
+  payload: id
+});
+
+export const deleteItinerary = id => store => {
+  return superagent.delete(`${API_URL}itineraries/${id}`)
+    .then(() => {
+      return store.dispatch(deleteOne(id))
+    });
 };
 

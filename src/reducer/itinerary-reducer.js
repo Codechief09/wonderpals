@@ -1,24 +1,15 @@
-const initialState = {
-  token: {},
-  itineraries: {}
-};
-
 export default (state = {}, { type, payload }) => {
   switch (type) {
     case "GET_ALL":
       return payload;
     case "CREATE_ITINERARY":
-      return [...state, payload];
+      return [payload, ...state];
     case "EDIT_ITINERARY":
-      // figure this out for Mongo
-      let newState = 'hi';
-      // let newState = { ...state };
-      // newState[payload.id] = payload;
-      return newState;
+      return state;
     case "DELETE_ITINERARY":
-      let updatedState = { ...state };
-      // delete updatedState[payload.id];
-      return updatedState;
+      let newState = [...state];
+      newState.filter(trip => trip._id !== payload);
+      return newState;
     default:
       return state;
   }
