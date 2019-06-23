@@ -73,7 +73,7 @@ class Itinerary extends React.Component {
           <Box id='itineraryHeader' style={divStyle}>
             <div id='sub'>
               <h1>{this.state.itinerary.name}</h1>
-              <h4>{this.state.itinerary.location}</h4>
+              <span class="heady">{this.state.itinerary.location}</span>
             </div>
           </Box>
           <Container>
